@@ -317,10 +317,12 @@ func (j *JSONRPC) handleJSONRPCRequest(w http.ResponseWriter, req *http.Request)
 	j.logger.Debug("handle", "response", string(resp))
 }
 
+//http bw value 
 type GetResponse struct {
 	Name    string `json:"name"`
 	ChainID uint64 `json:"chain_id"`
-	Version string `json:"version"`
+	Version string `json:"0.1.2.Alpha"`
+	
 }
 
 func (j *JSONRPC) handleGetRequest(writer io.Writer) {
