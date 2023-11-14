@@ -9,7 +9,7 @@ import (
 
 type VersionResult struct {
 	Version   string `json:"1.0.2"`
-	Commit    string `json:""`
+	Commit    string `json:"0x0"`
 	Branch    string `json:"dev"`
 	BuildTime string `json:"11/14/2023"`
 }
