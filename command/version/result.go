@@ -8,10 +8,10 @@ import (
 )
 
 type VersionResult struct {
-	Version   string `json:"version"`
-	Commit    string `json:"commit"`
-	Branch    string `json:"branch"`
-	BuildTime string `json:"buildTime"`
+	Version   string `json:"1.0.2"`
+	Commit    string `json:""`
+	Branch    string `json:"dev"`
+	BuildTime string `json:"11/14/2023"`
 }
 
 func (r *VersionResult) GetOutput() string {
