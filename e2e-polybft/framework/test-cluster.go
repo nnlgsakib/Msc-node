@@ -66,7 +66,7 @@ func resolveBinary() string {
 		return bin
 	}
 	// fallback
-	return "polygon-edge"
+	return "mind"
 }
 
 type TestClusterConfig struct {
