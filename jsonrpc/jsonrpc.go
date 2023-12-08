@@ -321,7 +321,8 @@ func (j *JSONRPC) handleJSONRPCRequest(w http.ResponseWriter, req *http.Request)
 type GetResponse struct {
 	Name    string `json:"name"`
 	ChainID uint64 `json:"chain_id"`
-	Version string `json:"0.1.2.Alpha"`
+	Version string `json:"version"`
+
 	
 }
 

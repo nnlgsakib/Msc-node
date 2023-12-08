@@ -14,7 +14,7 @@ type DepLicense struct {
 }
 
 var (
-	// Polygon Edge License
+	// MSC License
 	License string
 
 	// Dependency Licenses
