@@ -392,13 +392,19 @@ func (e *Eth) GetStorageAt(
 
 // GasPrice returns the average gas price based on the last x blocks
 // taking into consideration operator defined price limit
-func (e *Eth) GasPrice() (interface{}, error) {
-	// Fetch average gas price in uint64
-	avgGasPrice := e.store.GetAvgGasPrice().Uint64()
+// func (e *Eth) GasPrice() (interface{}, error) {
+// 	// Fetch average gas price in uint64
+// 	avgGasPrice := e.store.GetAvgGasPrice().Uint64()
 
-	// Return --price-limit flag defined value if it is greater than avgGasPrice
-	return argUint64(common.Max(e.priceLimit, avgGasPrice)), nil
+// 	// Return --price-limit flag defined value if it is greater than avgGasPrice
+// 	return argUint64(common.Max(e.priceLimit, avgGasPrice)), nil
+// }
+func (e *Eth) GasPrice() (interface{}, error) {
+	// Return constant gas price of 10 Gwei (10^9 Wei)
+	const fixedGasPrice = 10e9
+	return fixedGasPrice, nil
 }
+
 
 type overrideAccount struct {
 	Nonce     *argUint64                 `json:"nonce"`
