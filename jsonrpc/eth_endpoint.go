@@ -400,11 +400,9 @@ func (e *Eth) GetStorageAt(
 // 	return argUint64(common.Max(e.priceLimit, avgGasPrice)), nil
 // }
 func (e *Eth) GasPrice() (interface{}, error) {
-	// Fetch average gas price in uint64
-	//avgGasPrice := e.store.GetAvgGasPrice().Uint64()
-	const fixedGasPrice = 90926103
-	// Return --price-limit flag defined value if it is greater than avgGasPrice
-	return argUint64(common.Max(fixedGasPrice)), nil
+	// Return constant gas price of 10 Gwei (10^9 Wei)
+	const fixedGasPrice = 10e9
+	return fixedGasPrice, nil
 }
 
 
