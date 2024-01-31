@@ -400,7 +400,7 @@ func (e *Eth) GetStorageAt(
 // 	return argUint64(common.Max(e.priceLimit, avgGasPrice)), nil
 // }
 func (e *Eth) GasPrice() (interface{}, error) {
-	// Return constant gas price of 10 Gwei (10^9 Wei)
+	// Return constant gas price of 0.82 Gwei
 	const fixedGasPrice = 31693199
 	return fixedGasPrice, nil
 }
