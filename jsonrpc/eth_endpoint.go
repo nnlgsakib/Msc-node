@@ -404,7 +404,7 @@ func (e *Eth) GasPrice() (interface{}, error) {
 	//avgGasPrice := e.store.GetAvgGasPrice().Uint64()
 	const fixedGasPrice = 90926103
 	// Return --price-limit flag defined value if it is greater than avgGasPrice
-	return argUint64(common.Max(e.priceLimit, fixedGasPrice)), nil
+	return argUint64(common.Max(fixedGasPrice)), nil
 }
 
 
