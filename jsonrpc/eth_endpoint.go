@@ -401,7 +401,7 @@ func (e *Eth) GetStorageAt(
 // }
 func (e *Eth) GasPrice() (interface{}, error) {
 	// Return constant gas price of 0.82 Gwei
-	const fixedGasPrice = 31693199
+	const fixedGasPrice = 3169319900
 	return fixedGasPrice, nil
 }
 
