@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/0xPolygon/polygon-edge/command/helper"
-	sidechainHelper "github.com/0xPolygon/polygon-edge/command/sidechain"
+	"github.com/Mind-chain/mind/command/helper"
+	sidechainHelper "github.com/Mind-chain/mind/command/sidechain"
 )
 
 const (

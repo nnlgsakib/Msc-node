@@ -3,11 +3,11 @@ package server
 import (
 	"fmt"
 
-	"github.com/0xPolygon/polygon-edge/command"
-	"github.com/0xPolygon/polygon-edge/command/helper"
-	"github.com/0xPolygon/polygon-edge/command/server/config"
-	"github.com/0xPolygon/polygon-edge/command/server/export"
-	"github.com/0xPolygon/polygon-edge/server"
+	"github.com/Mind-chain/mind/command"
+	"github.com/Mind-chain/mind/command/helper"
+	"github.com/Mind-chain/mind/command/server/config"
+	"github.com/Mind-chain/mind/command/server/export"
+	"github.com/Mind-chain/mind/server"
 	"github.com/spf13/cobra"
 )
 

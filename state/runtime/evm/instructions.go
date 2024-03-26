@@ -7,11 +7,11 @@ import (
 	"math/bits"
 	"sync"
 
-	"github.com/0xPolygon/polygon-edge/crypto"
-	"github.com/0xPolygon/polygon-edge/helper/keccak"
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/state/runtime"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/crypto"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/helper/keccak"
+	"github.com/Mind-chain/mind/state/runtime"
+	"github.com/Mind-chain/mind/types"
 )
 
 type instruction func(c *state)
@@ -1237,7 +1237,7 @@ func (c *state) buildCallContract(op OpCode) (*runtime.Contract, uint64, uint64,
 
 	if op == CALL {
 		//if eip158 {
-			if c.config.EIP158 {
+		if c.config.EIP158 {
 			if transfersValue && c.host.Empty(addr) {
 				gasCost += 25000
 			}
@@ -1272,8 +1272,8 @@ func (c *state) buildCallContract(op OpCode) (*runtime.Contract, uint64, uint64,
 		gas = initialGas.Uint64()
 	}
 
-//	gasCost = gasCost + gas
-gasCostTmp, isOverflow := common.SafeAddUint64(gasCost, gas)
+	// gasCost = gasCost + gas
+	gasCostTmp, isOverflow := common.SafeAddUint64(gasCost, gas)
 	if isOverflow {
 		c.exit(errGasUintOverflow)
 

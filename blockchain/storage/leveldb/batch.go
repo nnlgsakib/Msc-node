@@ -1,7 +1,7 @@
 package leveldb
 
 import (
-	"github.com/0xPolygon/polygon-edge/blockchain/storage"
+	"github.com/Mind-chain/mind/blockchain/storage"
 	"github.com/syndtr/goleveldb/leveldb"
 )
 

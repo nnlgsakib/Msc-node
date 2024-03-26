@@ -3,7 +3,7 @@ package txpool
 import (
 	"sync"
 
-	"github.com/0xPolygon/polygon-edge/txpool/proto"
+	"github.com/Mind-chain/mind/txpool/proto"
 )
 
 type eventQueue struct {

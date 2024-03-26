@@ -11,14 +11,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/0xPolygon/polygon-edge/command"
-	"github.com/0xPolygon/polygon-edge/helper/hex"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/command"
+	"github.com/Mind-chain/mind/helper/hex"
+	"github.com/Mind-chain/mind/types"
 	"github.com/umbracle/ethgo"
 	"github.com/umbracle/ethgo/abi"
 
-	"github.com/0xPolygon/polygon-edge/e2e/framework"
-	"github.com/0xPolygon/polygon-edge/helper/tests"
+	"github.com/Mind-chain/mind/e2e/framework"
+	"github.com/Mind-chain/mind/helper/tests"
 	"github.com/stretchr/testify/assert"
 )
 

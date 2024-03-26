@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/0xPolygon/polygon-edge/command"
-	"github.com/0xPolygon/polygon-edge/command/helper"
-	ibftOp "github.com/0xPolygon/polygon-edge/consensus/ibft/proto"
-	"github.com/0xPolygon/polygon-edge/crypto"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/command"
+	"github.com/Mind-chain/mind/command/helper"
+	ibftOp "github.com/Mind-chain/mind/consensus/ibft/proto"
+	"github.com/Mind-chain/mind/crypto"
+	"github.com/Mind-chain/mind/types"
 )
 
 const (

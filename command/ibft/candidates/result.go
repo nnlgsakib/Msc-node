@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/0xPolygon/polygon-edge/command/helper"
-	ibftHelper "github.com/0xPolygon/polygon-edge/command/ibft/helper"
-	ibftOp "github.com/0xPolygon/polygon-edge/consensus/ibft/proto"
+	"github.com/Mind-chain/mind/command/helper"
+	ibftHelper "github.com/Mind-chain/mind/command/ibft/helper"
+	ibftOp "github.com/Mind-chain/mind/consensus/ibft/proto"
 )
 
 type IBFTCandidate struct {

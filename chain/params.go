@@ -4,8 +4,8 @@ import (
 	"errors"
 	"sort"
 
-	"github.com/0xPolygon/polygon-edge/forkmanager"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/forkmanager"
+	"github.com/Mind-chain/mind/types"
 )
 
 var (
@@ -107,9 +107,9 @@ func (f *Forks) SetFork(name string, value Fork) {
 	(*f)[name] = value
 }
 
-// func (f *Forks) RemoveFork(name string) {
-// 	delete(*f, name)
-// }
+//	func (f *Forks) RemoveFork(name string) {
+//		delete(*f, name)
+//	}
 func (f *Forks) RemoveFork(name string) *Forks {
 	delete(*f, name)
 

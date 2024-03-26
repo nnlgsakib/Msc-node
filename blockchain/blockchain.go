@@ -7,12 +7,12 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/0xPolygon/polygon-edge/blockchain/storage"
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/state"
-	"github.com/0xPolygon/polygon-edge/types"
-	"github.com/0xPolygon/polygon-edge/types/buildroot"
+	"github.com/Mind-chain/mind/blockchain/storage"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/state"
+	"github.com/Mind-chain/mind/types"
+	"github.com/Mind-chain/mind/types/buildroot"
 
 	"github.com/hashicorp/go-hclog"
 	lru "github.com/hashicorp/golang-lru"

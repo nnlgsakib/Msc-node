@@ -4,11 +4,11 @@ import (
 	"errors"
 	"net"
 
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/command/server/config"
-	"github.com/0xPolygon/polygon-edge/network"
-	"github.com/0xPolygon/polygon-edge/secrets"
-	"github.com/0xPolygon/polygon-edge/server"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/command/server/config"
+	"github.com/Mind-chain/mind/network"
+	"github.com/Mind-chain/mind/secrets"
+	"github.com/Mind-chain/mind/server"
 	"github.com/hashicorp/go-hclog"
 	"github.com/multiformats/go-multiaddr"
 )

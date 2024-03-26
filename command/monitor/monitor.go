@@ -6,12 +6,12 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/0xPolygon/polygon-edge/command"
-	"github.com/0xPolygon/polygon-edge/helper/common"
+	"github.com/Mind-chain/mind/command"
+	"github.com/Mind-chain/mind/helper/common"
 	"github.com/spf13/cobra"
 
-	"github.com/0xPolygon/polygon-edge/command/helper"
-	"github.com/0xPolygon/polygon-edge/server/proto"
+	"github.com/Mind-chain/mind/command/helper"
+	"github.com/Mind-chain/mind/server/proto"
 	empty "google.golang.org/protobuf/types/known/emptypb"
 )
 

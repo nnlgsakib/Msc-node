@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/0xPolygon/polygon-edge/state/runtime"
+	"github.com/Mind-chain/mind/state/runtime"
 	"github.com/umbracle/ethgo/abi"
 )
 

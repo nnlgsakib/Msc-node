@@ -6,10 +6,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/0xPolygon/polygon-edge/crypto"
+	"github.com/Mind-chain/mind/crypto"
 
-	"github.com/0xPolygon/polygon-edge/state"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/state"
+	"github.com/Mind-chain/mind/types"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/umbracle/fastrlp"
 )

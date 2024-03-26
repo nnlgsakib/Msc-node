@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/0xPolygon/polygon-edge/command"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/wallet"
-	"github.com/0xPolygon/polygon-edge/secrets"
-	"github.com/0xPolygon/polygon-edge/secrets/helper"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/command"
+	"github.com/Mind-chain/mind/consensus/polybft/wallet"
+	"github.com/Mind-chain/mind/secrets"
+	"github.com/Mind-chain/mind/secrets/helper"
+	"github.com/Mind-chain/mind/types"
 	"github.com/spf13/cobra"
 )
 

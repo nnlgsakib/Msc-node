@@ -15,11 +15,11 @@ import (
 	"github.com/umbracle/ethgo/testutil"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/contractsapi"
-	bls "github.com/0xPolygon/polygon-edge/consensus/polybft/signer"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/validator"
-	"github.com/0xPolygon/polygon-edge/merkle-tree"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/consensus/polybft/contractsapi"
+	bls "github.com/Mind-chain/mind/consensus/polybft/signer"
+	"github.com/Mind-chain/mind/consensus/polybft/validator"
+	"github.com/Mind-chain/mind/merkle-tree"
+	"github.com/Mind-chain/mind/types"
 )
 
 func newTestStateSyncManager(t *testing.T, key *validator.TestValidator, runtime Runtime) *stateSyncManager {

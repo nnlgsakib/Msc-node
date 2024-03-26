@@ -3,7 +3,7 @@ package evm
 import (
 	"testing"
 
-	"github.com/0xPolygon/polygon-edge/state/runtime"
+	"github.com/Mind-chain/mind/state/runtime"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"math/big"
 
-	bls "github.com/0xPolygon/polygon-edge/consensus/polybft/signer"
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/types"
+	bls "github.com/Mind-chain/mind/consensus/polybft/signer"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/types"
 )
 
 // GenesisValidator represents public information about validator accounts which are the part of genesis

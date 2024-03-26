@@ -5,12 +5,12 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/0xPolygon/polygon-edge/consensus/ibft/proto"
-	"github.com/0xPolygon/polygon-edge/consensus/ibft/signer"
-	"github.com/0xPolygon/polygon-edge/crypto"
-	"github.com/0xPolygon/polygon-edge/types"
-	"github.com/0xPolygon/polygon-edge/validators"
-	"github.com/0xPolygon/polygon-edge/validators/store"
+	"github.com/Mind-chain/mind/consensus/ibft/proto"
+	"github.com/Mind-chain/mind/consensus/ibft/signer"
+	"github.com/Mind-chain/mind/crypto"
+	"github.com/Mind-chain/mind/types"
+	"github.com/Mind-chain/mind/validators"
+	"github.com/Mind-chain/mind/validators/store"
 	empty "google.golang.org/protobuf/types/known/emptypb"
 )
 

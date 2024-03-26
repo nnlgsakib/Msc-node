@@ -8,13 +8,13 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/umbracle/ethgo"
 
-	"github.com/0xPolygon/polygon-edge/command"
-	"github.com/0xPolygon/polygon-edge/command/bridge/common"
-	"github.com/0xPolygon/polygon-edge/command/rootchain/helper"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/contractsapi"
-	helperCommon "github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/txrelayer"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/command"
+	"github.com/Mind-chain/mind/command/bridge/common"
+	"github.com/Mind-chain/mind/command/rootchain/helper"
+	"github.com/Mind-chain/mind/consensus/polybft/contractsapi"
+	helperCommon "github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/txrelayer"
+	"github.com/Mind-chain/mind/types"
 )
 
 type depositERC1155Params struct {

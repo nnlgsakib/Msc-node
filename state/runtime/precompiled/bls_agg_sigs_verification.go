@@ -3,10 +3,10 @@ package precompiled
 import (
 	"errors"
 
-	"github.com/0xPolygon/polygon-edge/chain"
-	bls "github.com/0xPolygon/polygon-edge/consensus/polybft/signer"
-	"github.com/0xPolygon/polygon-edge/state/runtime"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/chain"
+	bls "github.com/Mind-chain/mind/consensus/polybft/signer"
+	"github.com/Mind-chain/mind/state/runtime"
+	"github.com/Mind-chain/mind/types"
 	"github.com/umbracle/ethgo/abi"
 )
 

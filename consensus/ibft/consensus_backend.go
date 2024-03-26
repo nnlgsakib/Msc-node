@@ -8,11 +8,11 @@ import (
 
 	"github.com/0xPolygon/go-ibft/messages"
 	"github.com/0xPolygon/go-ibft/messages/proto"
-	"github.com/0xPolygon/polygon-edge/consensus"
-	"github.com/0xPolygon/polygon-edge/consensus/ibft/signer"
-	"github.com/0xPolygon/polygon-edge/helper/hex"
-	"github.com/0xPolygon/polygon-edge/state"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/consensus"
+	"github.com/Mind-chain/mind/consensus/ibft/signer"
+	"github.com/Mind-chain/mind/helper/hex"
+	"github.com/Mind-chain/mind/state"
+	"github.com/Mind-chain/mind/types"
 )
 
 func (i *backendIBFT) BuildProposal(view *proto.View) []byte {
@@ -163,9 +163,9 @@ func (i *backendIBFT) buildBlock(parent *types.Header) (*types.Block, error) {
 		ParentHash: parent.Hash,
 		Number:     parent.Number + 1,
 		//Miner:      types.ZeroAddress.Bytes(),
-		Miner:      i.currentSigner.Address().Bytes(),
-		Nonce:      types.Nonce{},
-		MixHash:    signer.IstanbulDigest,
+		Miner:   i.currentSigner.Address().Bytes(),
+		Nonce:   types.Nonce{},
+		MixHash: signer.IstanbulDigest,
 		// this is required because blockchain needs difficulty to organize blocks and forks
 		Difficulty: parent.Number + 1,
 		StateRoot:  types.EmptyRootHash, // this avoids needing state for now

@@ -1,6 +1,6 @@
 package contracts
 
-import "github.com/0xPolygon/polygon-edge/types"
+import "github.com/Mind-chain/mind/types"
 
 var (
 	// ValidatorSetContract is an address of validator set contract deployed to child chain

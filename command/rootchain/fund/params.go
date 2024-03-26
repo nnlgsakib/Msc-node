@@ -4,8 +4,8 @@ import (
 	"errors"
 	"math/big"
 
-	cmdhelper "github.com/0xPolygon/polygon-edge/command/helper"
-	"github.com/0xPolygon/polygon-edge/types"
+	cmdhelper "github.com/Mind-chain/mind/command/helper"
+	"github.com/Mind-chain/mind/types"
 )
 
 const (

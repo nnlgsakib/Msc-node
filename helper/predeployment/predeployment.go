@@ -10,13 +10,13 @@ import (
 
 	"github.com/umbracle/ethgo/abi"
 
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/helper/hex"
-	"github.com/0xPolygon/polygon-edge/state"
-	itrie "github.com/0xPolygon/polygon-edge/state/immutable-trie"
-	"github.com/0xPolygon/polygon-edge/state/runtime"
-	"github.com/0xPolygon/polygon-edge/state/runtime/evm"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/helper/hex"
+	"github.com/Mind-chain/mind/state"
+	itrie "github.com/Mind-chain/mind/state/immutable-trie"
+	"github.com/Mind-chain/mind/state/runtime"
+	"github.com/Mind-chain/mind/state/runtime/evm"
+	"github.com/Mind-chain/mind/types"
 )
 
 var (

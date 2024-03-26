@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/0xPolygon/polygon-edge/command/helper"
+	"github.com/Mind-chain/mind/command/helper"
 )
 
 type VersionResult struct {
@@ -43,4 +43,3 @@ func main() {
 	// Print the output
 	fmt.Println(output)
 }
-

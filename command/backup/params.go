@@ -3,10 +3,10 @@ package backup
 import (
 	"errors"
 
-	"github.com/0xPolygon/polygon-edge/archive"
-	"github.com/0xPolygon/polygon-edge/command"
-	"github.com/0xPolygon/polygon-edge/command/helper"
-	"github.com/0xPolygon/polygon-edge/helper/common"
+	"github.com/Mind-chain/mind/archive"
+	"github.com/Mind-chain/mind/command"
+	"github.com/Mind-chain/mind/command/helper"
+	"github.com/Mind-chain/mind/helper/common"
 	"github.com/hashicorp/go-hclog"
 )
 

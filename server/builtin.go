@@ -1,19 +1,19 @@
 package server
 
 import (
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/consensus"
-	consensusDev "github.com/0xPolygon/polygon-edge/consensus/dev"
-	consensusDummy "github.com/0xPolygon/polygon-edge/consensus/dummy"
-	consensusIBFT "github.com/0xPolygon/polygon-edge/consensus/ibft"
-	consensusPolyBFT "github.com/0xPolygon/polygon-edge/consensus/polybft"
-	"github.com/0xPolygon/polygon-edge/forkmanager"
-	"github.com/0xPolygon/polygon-edge/secrets"
-	"github.com/0xPolygon/polygon-edge/secrets/awsssm"
-	"github.com/0xPolygon/polygon-edge/secrets/gcpssm"
-	"github.com/0xPolygon/polygon-edge/secrets/hashicorpvault"
-	"github.com/0xPolygon/polygon-edge/secrets/local"
-	"github.com/0xPolygon/polygon-edge/state"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/consensus"
+	consensusDev "github.com/Mind-chain/mind/consensus/dev"
+	consensusDummy "github.com/Mind-chain/mind/consensus/dummy"
+	consensusIBFT "github.com/Mind-chain/mind/consensus/ibft"
+	consensusPolyBFT "github.com/Mind-chain/mind/consensus/polybft"
+	"github.com/Mind-chain/mind/forkmanager"
+	"github.com/Mind-chain/mind/secrets"
+	"github.com/Mind-chain/mind/secrets/awsssm"
+	"github.com/Mind-chain/mind/secrets/gcpssm"
+	"github.com/Mind-chain/mind/secrets/hashicorpvault"
+	"github.com/Mind-chain/mind/secrets/local"
+	"github.com/Mind-chain/mind/state"
 )
 
 type GenesisFactoryHook func(config *chain.Chain, engineName string) func(*state.Transition) error

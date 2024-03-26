@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/0xPolygon/polygon-edge/helper/common"
+	"github.com/Mind-chain/mind/helper/common"
 )
 
 type createFn func() ([]byte, error)

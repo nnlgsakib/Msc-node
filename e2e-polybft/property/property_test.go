@@ -11,8 +11,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"pgregory.net/rapid"
 
-	"github.com/0xPolygon/polygon-edge/e2e-polybft/framework"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/e2e-polybft/framework"
+	"github.com/Mind-chain/mind/types"
 )
 
 func TestProperty_DifferentVotingPower(t *testing.T) {

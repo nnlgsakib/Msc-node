@@ -3,9 +3,9 @@ package rootchain
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/0xPolygon/polygon-edge/command/rootchain/deploy"
-	"github.com/0xPolygon/polygon-edge/command/rootchain/fund"
-	"github.com/0xPolygon/polygon-edge/command/rootchain/server"
+	"github.com/Mind-chain/mind/command/rootchain/deploy"
+	"github.com/Mind-chain/mind/command/rootchain/fund"
+	"github.com/Mind-chain/mind/command/rootchain/server"
 )
 
 // GetCommand creates "rootchain" helper command

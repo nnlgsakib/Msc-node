@@ -8,13 +8,13 @@ import (
 
 	"github.com/hashicorp/go-hclog"
 
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/gasprice"
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/helper/progress"
-	"github.com/0xPolygon/polygon-edge/state"
-	"github.com/0xPolygon/polygon-edge/state/runtime"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/gasprice"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/helper/progress"
+	"github.com/Mind-chain/mind/state"
+	"github.com/Mind-chain/mind/state/runtime"
+	"github.com/Mind-chain/mind/types"
 )
 
 type ethTxPoolStore interface {
@@ -399,12 +399,12 @@ func (e *Eth) GasPrice() (interface{}, error) {
 	// Return --price-limit flag defined value if it is greater than avgGasPrice
 	return argUint64(common.Max(e.priceLimit, avgGasPrice)), nil
 }
+
 // func (e *Eth) GasPrice() (interface{}, error) {
 // 	// Return constant gas price of 0.82 Gwei
 // 	const fixedGasPrice = 3169319900
 // 	return fixedGasPrice, nil
 // }
-
 
 type overrideAccount struct {
 	Nonce     *argUint64                 `json:"nonce"`
@@ -515,7 +515,7 @@ func (e *Eth) EstimateGas(arg *txnArgs, rawNum *BlockNumber) (interface{}, error
 
 		return argUint64(gasCost), nil
 	}
-	
+
 	//forksInTime := e.store.GetForksInTime(header.Number)
 
 	var standardGas uint64
