@@ -8,7 +8,7 @@ var (
 	// Versioning should follow the SemVer guidelines
 	// https://semver.org/
 	Version   = "1.0.5"
-	Branch    = "dev"
+	Branch    = "beta.x"
 	BuildTime = "3/26/2024"
 	Commit    string
 )
