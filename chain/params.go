@@ -172,7 +172,7 @@ var AllForksEnabled = &Forks{
 	EIP150:              NewFork(0),
 	EIP155:              NewFork(0),
 	EIP158:              NewFork(0),
-	EIP2929:             NewFork(7000001),
+	EIP2929:             NewFork(6334150),
 	Byzantium:           NewFork(0),
 	Constantinople:      NewFork(0),
 	Petersburg:          NewFork(0),
@@ -180,5 +180,5 @@ var AllForksEnabled = &Forks{
 	London:              NewFork(0),
 	QuorumCalcAlignment: NewFork(0),
 	TxHashWithType:      NewFork(0),
-	Londonv2:            NewFork(7000000),
+	Londonv2:            NewFork(6334149),
 }
