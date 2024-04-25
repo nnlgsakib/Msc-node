@@ -88,6 +88,7 @@ const (
 	EIP150              = "EIP150"
 	EIP158              = "EIP158"
 	EIP155              = "EIP155"
+	EIP2929             = "EIP2929"
 	Londonv2            = "londonv2"
 	QuorumCalcAlignment = "quorumcalcalignment"
 	TxHashWithType      = "txHashWithType"
@@ -159,6 +160,7 @@ type ForksInTime struct {
 	EIP150,
 	EIP158,
 	EIP155,
+	EIP2929,
 	QuorumCalcAlignment,
 	TxHashWithType,
 	Londonv2 bool
@@ -170,6 +172,7 @@ var AllForksEnabled = &Forks{
 	EIP150:              NewFork(0),
 	EIP155:              NewFork(0),
 	EIP158:              NewFork(0),
+	EIP2929:             NewFork(7000001),
 	Byzantium:           NewFork(0),
 	Constantinople:      NewFork(0),
 	Petersburg:          NewFork(0),
