@@ -88,6 +88,7 @@ const (
 	EIP150              = "EIP150"
 	EIP158              = "EIP158"
 	EIP155              = "EIP155"
+	Londonv2            = "londonv2"
 	QuorumCalcAlignment = "quorumcalcalignment"
 	TxHashWithType      = "txHashWithType"
 )
@@ -130,6 +131,7 @@ func (f *Forks) At(block uint64) ForksInTime {
 		EIP155:              f.IsActive(EIP155, block),
 		QuorumCalcAlignment: f.IsActive(QuorumCalcAlignment, block),
 		TxHashWithType:      f.IsActive(TxHashWithType, block),
+		Londonv2:            f.IsActive(Londonv2, block),
 	}
 }
 
@@ -158,7 +160,8 @@ type ForksInTime struct {
 	EIP158,
 	EIP155,
 	QuorumCalcAlignment,
-	TxHashWithType bool
+	TxHashWithType,
+	Londonv2 bool
 }
 
 // AllForksEnabled should contain all supported forks by current edge version
@@ -174,4 +177,5 @@ var AllForksEnabled = &Forks{
 	London:              NewFork(0),
 	QuorumCalcAlignment: NewFork(0),
 	TxHashWithType:      NewFork(0),
+	Londonv2:            NewFork(7000000),
 }

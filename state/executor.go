@@ -11,7 +11,6 @@ import (
 	"github.com/Mind-chain/mind/chain"
 	"github.com/Mind-chain/mind/contracts"
 	"github.com/Mind-chain/mind/crypto"
-	"github.com/Mind-chain/mind/helper/common"
 	"github.com/Mind-chain/mind/state/runtime"
 	"github.com/Mind-chain/mind/state/runtime/addresslist"
 	"github.com/Mind-chain/mind/state/runtime/evm"
@@ -454,18 +453,7 @@ func (t *Transition) ContextPtr() *runtime.TxContext {
 }
 
 func (t *Transition) subGasLimitPrice(msg *types.Transaction) error {
-	upfrontGasCost := new(big.Int).SetUint64(msg.Gas)
-
-	factor := new(big.Int)
-	if msg.GasFeeCap != nil && msg.GasFeeCap.BitLen() > 0 {
-		// Apply EIP-1559 tx cost calculation factor
-		factor = factor.Set(msg.GasFeeCap)
-	} else {
-		// Apply legacy tx cost calculation factor
-		factor = factor.Set(msg.GasPrice)
-	}
-
-	upfrontGasCost = upfrontGasCost.Mul(upfrontGasCost, factor)
+	upfrontGasCost := GetLondonv2Handler(uint64(t.ctx.Number)).getUpfrontGasCost(msg, t.ctx.BaseFee)
 
 	if err := t.state.SubBalance(msg.From, upfrontGasCost); err != nil {
 		if errors.Is(err, runtime.ErrNotEnoughFunds) {
@@ -490,37 +478,16 @@ func (t *Transition) nonceCheck(msg *types.Transaction) error {
 
 // checkDynamicFees checks correctness of the EIP-1559 feature-related fields.
 // Basically, makes sure gas tip cap and gas fee cap are good.
+// func (t *Transition) checkDynamicFees(msg *types.Transaction) error {
+// 	return GetLondonv2Handler(uint64(t.ctx.Number)).checkDynamicFees(msg, t)
+
+//		return nil
+//	}
 func (t *Transition) checkDynamicFees(msg *types.Transaction) error {
-	if msg.Type != types.DynamicFeeTx {
-		return nil
+	err := GetLondonv2Handler(uint64(t.ctx.Number)).checkDynamicFees(msg, t)
+	if err != nil {
+		return err
 	}
-
-	if msg.GasFeeCap.BitLen() == 0 && msg.GasTipCap.BitLen() == 0 {
-		return nil
-	}
-
-	if l := msg.GasFeeCap.BitLen(); l > 256 {
-		return fmt.Errorf("%w: address %v, GasFeeCap bit length: %d", ErrFeeCapVeryHigh,
-			msg.From.String(), l)
-	}
-
-	if l := msg.GasTipCap.BitLen(); l > 256 {
-		return fmt.Errorf("%w: address %v, GasTipCap bit length: %d", ErrTipVeryHigh,
-			msg.From.String(), l)
-	}
-
-	if msg.GasFeeCap.Cmp(msg.GasTipCap) < 0 {
-		return fmt.Errorf("%w: address %v, GasTipCap: %s, GasFeeCap: %s", ErrTipAboveFeeCap,
-			msg.From.String(), msg.GasTipCap, msg.GasFeeCap)
-	}
-
-	// This will panic if baseFee is nil, but basefee presence is verified
-	// as part of header validation.
-	if msg.GasFeeCap.Cmp(t.ctx.BaseFee) < 0 {
-		return fmt.Errorf("%w: address %v, GasFeeCap: %s, BaseFee: %s", ErrFeeCapTooLow,
-			msg.From.String(), msg.GasFeeCap, t.ctx.BaseFee)
-	}
-
 	return nil
 }
 
@@ -642,13 +609,16 @@ func (t *Transition) apply(msg *types.Transaction) (*runtime.ExecutionResult, er
 	// Define effective tip based on tx type.
 	// We use EIP-1559 fields of the tx if the london hardfork is enabled.
 	// Effective tip became to be either gas tip cap or (gas fee cap - current base fee)
-	effectiveTip := new(big.Int).Set(gasPrice)
-	if t.config.London && msg.Type == types.DynamicFeeTx {
-		effectiveTip = common.BigMin(
-			new(big.Int).Sub(msg.GasFeeCap, t.ctx.BaseFee),
-			new(big.Int).Set(msg.GasTipCap),
-		)
-	}
+	// effectiveTip := new(big.Int).Set(gasPrice)
+	// if t.config.London && msg.Type == types.DynamicFeeTx {
+	// 	effectiveTip = common.BigMin(
+	// 		new(big.Int).Sub(msg.GasFeeCap, t.ctx.BaseFee),
+	// 		new(big.Int).Set(msg.GasTipCap),
+	// 	)
+	// }
+	effectiveTip := GetLondonv2Handler(uint64(t.ctx.Number)).getEffectiveTip(
+		msg, gasPrice, t.ctx.BaseFee, t.config.London,
+	)
 
 	// Pay the coinbase fee as a miner reward using the calculated effective tip.
 	coinbaseFee := new(big.Int).Mul(new(big.Int).SetUint64(result.GasUsed), effectiveTip)
