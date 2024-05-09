@@ -103,6 +103,12 @@ func (e *Eth) ChainId() (interface{}, error) {
 	return argUintPtr(e.chainID), nil
 }
 
+// MSC don't have any support for eth_accounts (current end point is not functional ) just added this dummy to turn msc compatibe for all ethereum toolings
+func (e *Eth) Accounts() ([]types.Address, error) {
+	address := "0x0000000000000000000000000000000000000000"
+	return []types.Address{types.StringToAddress(address)}, nil
+}
+
 func (e *Eth) Syncing() (interface{}, error) {
 	if syncProgression := e.store.GetSyncProgression(); syncProgression != nil {
 		// Node is bulk syncing, return the status
@@ -209,9 +215,10 @@ func (e *Eth) SendRawTransaction(buf argBytes) (interface{}, error) {
 }
 
 // SendTransaction rejects eth_sendTransaction json-rpc call as we don't support wallet management
+
 func (e *Eth) SendTransaction(_ *txnArgs) (interface{}, error) {
 	return nil, fmt.Errorf("request calls to eth_sendTransaction method are not supported," +
-		" use eth_sendRawTransaction instead")
+		" use eth_sendRawTransaction insead")
 }
 
 // GetTransactionByHash returns a transaction by its hash.
