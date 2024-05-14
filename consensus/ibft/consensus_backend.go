@@ -167,7 +167,7 @@ func (i *backendIBFT) buildBlock(parent *types.Header) (*types.Block, error) {
 		Nonce:   types.Nonce{},
 		MixHash: signer.IstanbulDigest,
 		// this is required because blockchain needs difficulty to organize blocks and forks
-		Difficulty: parent.Number + 1,
+		Difficulty: parent.Number + 1000,
 		StateRoot:  types.EmptyRootHash, // this avoids needing state for now
 		Sha3Uncles: types.EmptyUncleHash,
 		GasLimit:   parent.GasLimit, // Inherit from parent for now, will need to adjust dynamically later.
