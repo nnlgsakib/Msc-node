@@ -103,7 +103,7 @@ func (e *Eth) ChainId() (interface{}, error) {
 	return argUintPtr(e.chainID), nil
 }
 
-// MSC don't have any support for eth_accounts (current end point is not functional ) just added this dummy to turn msc compatibe for all ethereum toolings
+// MSC don't have any support for eth_accounts (current end point is not functional ) just added this dummy to turn msc compatible for all ethereum tools
 func (e *Eth) Accounts() ([]types.Address, error) {
 	address := "0x0000000000000000000000000000000000000000"
 	return []types.Address{types.StringToAddress(address)}, nil
