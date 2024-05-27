@@ -366,9 +366,9 @@ func (i *backendIBFT) verifyHeaderImpl(
 	}
 
 	// difficulty has to match number
-	if header.Difficulty != header.Number {
-		return ErrWrongDifficulty
-	}
+	// if header.Difficulty != header.Number {
+	// 	return ErrWrongDifficulty
+	// }
 
 	// ensure the extra data is correctly formatted
 	if _, err := headerSigner.GetIBFTExtra(header); err != nil {
