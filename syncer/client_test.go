@@ -11,12 +11,12 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/0xPolygon/polygon-edge/blockchain"
-	"github.com/0xPolygon/polygon-edge/network"
-	"github.com/0xPolygon/polygon-edge/network/event"
-	"github.com/0xPolygon/polygon-edge/network/grpc"
-	"github.com/0xPolygon/polygon-edge/syncer/proto"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/blockchain"
+	"github.com/Mind-chain/mind/network"
+	"github.com/Mind-chain/mind/network/event"
+	"github.com/Mind-chain/mind/network/grpc"
+	"github.com/Mind-chain/mind/syncer/proto"
+	"github.com/Mind-chain/mind/types"
 )
 
 var (

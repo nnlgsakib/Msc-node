@@ -1,6 +1,5 @@
 package server
 
-
 import (
 	"context"
 	"encoding/json"
@@ -13,35 +12,35 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/0xPolygon/polygon-edge/blockchain/storage"
-	"github.com/0xPolygon/polygon-edge/blockchain/storage/leveldb"
-	"github.com/0xPolygon/polygon-edge/blockchain/storage/memory"
-	consensusPolyBFT "github.com/0xPolygon/polygon-edge/consensus/polybft"
-	"github.com/0xPolygon/polygon-edge/forkmanager"
-	"github.com/0xPolygon/polygon-edge/gasprice"
+	"github.com/Mind-chain/mind/blockchain/storage"
+	"github.com/Mind-chain/mind/blockchain/storage/leveldb"
+	"github.com/Mind-chain/mind/blockchain/storage/memory"
+	consensusPolyBFT "github.com/Mind-chain/mind/consensus/polybft"
+	"github.com/Mind-chain/mind/forkmanager"
+	"github.com/Mind-chain/mind/gasprice"
 
-	"github.com/0xPolygon/polygon-edge/archive"
-	"github.com/0xPolygon/polygon-edge/blockchain"
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/consensus"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/statesyncrelayer"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/wallet"
-	"github.com/0xPolygon/polygon-edge/contracts"
-	"github.com/0xPolygon/polygon-edge/crypto"
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/helper/progress"
-	"github.com/0xPolygon/polygon-edge/jsonrpc"
-	"github.com/0xPolygon/polygon-edge/network"
-	"github.com/0xPolygon/polygon-edge/secrets"
-	"github.com/0xPolygon/polygon-edge/server/proto"
-	"github.com/0xPolygon/polygon-edge/state"
-	itrie "github.com/0xPolygon/polygon-edge/state/immutable-trie"
-	"github.com/0xPolygon/polygon-edge/state/runtime"
-	"github.com/0xPolygon/polygon-edge/state/runtime/addresslist"
-	"github.com/0xPolygon/polygon-edge/state/runtime/tracer"
-	"github.com/0xPolygon/polygon-edge/txpool"
-	"github.com/0xPolygon/polygon-edge/types"
-	"github.com/0xPolygon/polygon-edge/validate"
+	"github.com/Mind-chain/mind/archive"
+	"github.com/Mind-chain/mind/blockchain"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/consensus"
+	"github.com/Mind-chain/mind/consensus/polybft/statesyncrelayer"
+	"github.com/Mind-chain/mind/consensus/polybft/wallet"
+	"github.com/Mind-chain/mind/contracts"
+	"github.com/Mind-chain/mind/crypto"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/helper/progress"
+	"github.com/Mind-chain/mind/jsonrpc"
+	"github.com/Mind-chain/mind/network"
+	"github.com/Mind-chain/mind/secrets"
+	"github.com/Mind-chain/mind/server/proto"
+	"github.com/Mind-chain/mind/state"
+	itrie "github.com/Mind-chain/mind/state/immutable-trie"
+	"github.com/Mind-chain/mind/state/runtime"
+	"github.com/Mind-chain/mind/state/runtime/addresslist"
+	"github.com/Mind-chain/mind/state/runtime/tracer"
+	"github.com/Mind-chain/mind/txpool"
+	"github.com/Mind-chain/mind/types"
+	"github.com/Mind-chain/mind/validate"
 	"github.com/hashicorp/go-hclog"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -1044,7 +1043,10 @@ func initForkManager(engineName string, config *chain.Chain) error {
 	if err := types.RegisterTxHashFork(chain.TxHashWithType); err != nil {
 		return err
 	}
-
+	// Register Handler for London fork V2
+	if err := state.RegisterLondonv2(chain.Londonv2); err != nil {
+		return err
+	}
 	if factory := forkManagerFactory[ConsensusType(engineName)]; factory != nil {
 		if err := factory(config.Params.Forks); err != nil {
 			return err

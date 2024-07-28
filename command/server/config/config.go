@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/0xPolygon/polygon-edge/network"
+	"github.com/Mind-chain/mind/network"
 	"github.com/hashicorp/hcl"
 	"gopkg.in/yaml.v3"
 )

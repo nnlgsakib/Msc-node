@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/0xPolygon/polygon-edge/command/helper"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/command/helper"
+	"github.com/Mind-chain/mind/types"
 )
 
 type SecretsInitResult struct {

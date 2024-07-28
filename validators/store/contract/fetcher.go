@@ -3,11 +3,11 @@ package contract
 import (
 	"fmt"
 
-	"github.com/0xPolygon/polygon-edge/contracts/staking"
-	"github.com/0xPolygon/polygon-edge/crypto"
-	"github.com/0xPolygon/polygon-edge/state"
-	"github.com/0xPolygon/polygon-edge/types"
-	"github.com/0xPolygon/polygon-edge/validators"
+	"github.com/Mind-chain/mind/contracts/staking"
+	"github.com/Mind-chain/mind/crypto"
+	"github.com/Mind-chain/mind/state"
+	"github.com/Mind-chain/mind/types"
+	"github.com/Mind-chain/mind/validators"
 )
 
 // FetchValidators fetches validators from a contract switched by validator type

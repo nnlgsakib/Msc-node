@@ -5,11 +5,11 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/contractsapi"
-	"github.com/0xPolygon/polygon-edge/crypto"
-	"github.com/0xPolygon/polygon-edge/merkle-tree"
-	"github.com/0xPolygon/polygon-edge/state/runtime/precompiled"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/consensus/polybft/contractsapi"
+	"github.com/Mind-chain/mind/crypto"
+	"github.com/Mind-chain/mind/merkle-tree"
+	"github.com/Mind-chain/mind/state/runtime/precompiled"
+	"github.com/Mind-chain/mind/types"
 )
 
 const (

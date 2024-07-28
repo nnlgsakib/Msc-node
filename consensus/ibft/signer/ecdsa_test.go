@@ -5,12 +5,12 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/0xPolygon/polygon-edge/crypto"
-	"github.com/0xPolygon/polygon-edge/helper/hex"
-	testHelper "github.com/0xPolygon/polygon-edge/helper/tests"
-	"github.com/0xPolygon/polygon-edge/secrets"
-	"github.com/0xPolygon/polygon-edge/types"
-	"github.com/0xPolygon/polygon-edge/validators"
+	"github.com/Mind-chain/mind/crypto"
+	"github.com/Mind-chain/mind/helper/hex"
+	testHelper "github.com/Mind-chain/mind/helper/tests"
+	"github.com/Mind-chain/mind/secrets"
+	"github.com/Mind-chain/mind/types"
+	"github.com/Mind-chain/mind/validators"
 	"github.com/stretchr/testify/assert"
 )
 

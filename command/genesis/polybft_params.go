@@ -11,17 +11,17 @@ import (
 
 	"github.com/multiformats/go-multiaddr"
 
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/command"
-	"github.com/0xPolygon/polygon-edge/command/helper"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/contractsapi"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/contractsapi/artifact"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/validator"
-	"github.com/0xPolygon/polygon-edge/contracts"
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/server"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/command"
+	"github.com/Mind-chain/mind/command/helper"
+	"github.com/Mind-chain/mind/consensus/polybft"
+	"github.com/Mind-chain/mind/consensus/polybft/contractsapi"
+	"github.com/Mind-chain/mind/consensus/polybft/contractsapi/artifact"
+	"github.com/Mind-chain/mind/consensus/polybft/validator"
+	"github.com/Mind-chain/mind/contracts"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/server"
+	"github.com/Mind-chain/mind/types"
 )
 
 const (

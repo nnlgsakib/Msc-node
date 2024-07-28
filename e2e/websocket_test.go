@@ -6,9 +6,9 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/0xPolygon/polygon-edge/e2e/framework"
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/jsonrpc"
+	"github.com/Mind-chain/mind/e2e/framework"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/jsonrpc"
 	"github.com/gorilla/websocket"
 	"github.com/stretchr/testify/assert"
 )

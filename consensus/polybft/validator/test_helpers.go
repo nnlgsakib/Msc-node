@@ -8,10 +8,10 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/bitmap"
-	bls "github.com/0xPolygon/polygon-edge/consensus/polybft/signer"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/wallet"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/consensus/polybft/bitmap"
+	bls "github.com/Mind-chain/mind/consensus/polybft/signer"
+	"github.com/Mind-chain/mind/consensus/polybft/wallet"
+	"github.com/Mind-chain/mind/types"
 	"github.com/hashicorp/go-hclog"
 	"github.com/stretchr/testify/require"
 )

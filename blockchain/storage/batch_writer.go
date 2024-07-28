@@ -3,8 +3,8 @@ package storage
 import (
 	"math/big"
 
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/types"
 	"github.com/umbracle/fastrlp"
 )
 

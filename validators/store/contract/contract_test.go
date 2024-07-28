@@ -8,16 +8,16 @@ import (
 	lru "github.com/hashicorp/golang-lru"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/contracts/staking"
-	"github.com/0xPolygon/polygon-edge/crypto"
-	stakingHelper "github.com/0xPolygon/polygon-edge/helper/staking"
-	testHelper "github.com/0xPolygon/polygon-edge/helper/tests"
-	"github.com/0xPolygon/polygon-edge/state"
-	itrie "github.com/0xPolygon/polygon-edge/state/immutable-trie"
-	"github.com/0xPolygon/polygon-edge/types"
-	"github.com/0xPolygon/polygon-edge/validators"
-	"github.com/0xPolygon/polygon-edge/validators/store"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/contracts/staking"
+	"github.com/Mind-chain/mind/crypto"
+	stakingHelper "github.com/Mind-chain/mind/helper/staking"
+	testHelper "github.com/Mind-chain/mind/helper/tests"
+	"github.com/Mind-chain/mind/state"
+	itrie "github.com/Mind-chain/mind/state/immutable-trie"
+	"github.com/Mind-chain/mind/types"
+	"github.com/Mind-chain/mind/validators"
+	"github.com/Mind-chain/mind/validators/store"
 )
 
 var (

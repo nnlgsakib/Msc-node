@@ -4,8 +4,8 @@ import (
 	"errors"
 	"sort"
 
-	"github.com/0xPolygon/polygon-edge/forkmanager"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/forkmanager"
+	"github.com/Mind-chain/mind/types"
 )
 
 var (
@@ -88,6 +88,8 @@ const (
 	EIP150              = "EIP150"
 	EIP158              = "EIP158"
 	EIP155              = "EIP155"
+	EIP2929             = "EIP2929"
+	Londonv2            = "londonv2"
 	QuorumCalcAlignment = "quorumcalcalignment"
 	TxHashWithType      = "txHashWithType"
 )
@@ -107,9 +109,9 @@ func (f *Forks) SetFork(name string, value Fork) {
 	(*f)[name] = value
 }
 
-// func (f *Forks) RemoveFork(name string) {
-// 	delete(*f, name)
-// }
+//	func (f *Forks) RemoveFork(name string) {
+//		delete(*f, name)
+//	}
 func (f *Forks) RemoveFork(name string) *Forks {
 	delete(*f, name)
 
@@ -130,6 +132,7 @@ func (f *Forks) At(block uint64) ForksInTime {
 		EIP155:              f.IsActive(EIP155, block),
 		QuorumCalcAlignment: f.IsActive(QuorumCalcAlignment, block),
 		TxHashWithType:      f.IsActive(TxHashWithType, block),
+		Londonv2:            f.IsActive(Londonv2, block),
 	}
 }
 
@@ -157,8 +160,10 @@ type ForksInTime struct {
 	EIP150,
 	EIP158,
 	EIP155,
+	EIP2929,
 	QuorumCalcAlignment,
-	TxHashWithType bool
+	TxHashWithType,
+	Londonv2 bool
 }
 
 // AllForksEnabled should contain all supported forks by current edge version
@@ -167,6 +172,7 @@ var AllForksEnabled = &Forks{
 	EIP150:              NewFork(0),
 	EIP155:              NewFork(0),
 	EIP158:              NewFork(0),
+	EIP2929:             NewFork(6334150),
 	Byzantium:           NewFork(0),
 	Constantinople:      NewFork(0),
 	Petersburg:          NewFork(0),
@@ -174,4 +180,5 @@ var AllForksEnabled = &Forks{
 	London:              NewFork(0),
 	QuorumCalcAlignment: NewFork(0),
 	TxHashWithType:      NewFork(0),
+	Londonv2:            NewFork(6334149),
 }

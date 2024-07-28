@@ -3,9 +3,9 @@ package list
 import (
 	"context"
 
-	"github.com/0xPolygon/polygon-edge/command"
-	"github.com/0xPolygon/polygon-edge/command/helper"
-	"github.com/0xPolygon/polygon-edge/server/proto"
+	"github.com/Mind-chain/mind/command"
+	"github.com/Mind-chain/mind/command/helper"
+	"github.com/Mind-chain/mind/server/proto"
 	"github.com/spf13/cobra"
 	empty "google.golang.org/protobuf/types/known/emptypb"
 )

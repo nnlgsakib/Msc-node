@@ -6,23 +6,24 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/0xPolygon/polygon-edge/command/backup"
-	"github.com/0xPolygon/polygon-edge/command/bridge"
-	"github.com/0xPolygon/polygon-edge/command/genesis"
-	"github.com/0xPolygon/polygon-edge/command/helper"
-	"github.com/0xPolygon/polygon-edge/command/ibft"
-	"github.com/0xPolygon/polygon-edge/command/license"
-	"github.com/0xPolygon/polygon-edge/command/monitor"
-	"github.com/0xPolygon/polygon-edge/command/peers"
-	"github.com/0xPolygon/polygon-edge/command/polybft"
-	"github.com/0xPolygon/polygon-edge/command/polybftsecrets"
-	"github.com/0xPolygon/polygon-edge/command/regenesis"
-	"github.com/0xPolygon/polygon-edge/command/rootchain"
-	"github.com/0xPolygon/polygon-edge/command/secrets"
-	"github.com/0xPolygon/polygon-edge/command/server"
-	"github.com/0xPolygon/polygon-edge/command/status"
-	"github.com/0xPolygon/polygon-edge/command/txpool"
-	"github.com/0xPolygon/polygon-edge/command/version"
+	"github.com/Mind-chain/mind/command/backup"
+	//"github.com/Mind-chain/mind/command/bridge"
+	"github.com/Mind-chain/mind/command/genesis"
+	"github.com/Mind-chain/mind/command/helper"
+	"github.com/Mind-chain/mind/command/ibft"
+	"github.com/Mind-chain/mind/command/license"
+	"github.com/Mind-chain/mind/command/monitor"
+	"github.com/Mind-chain/mind/command/peers"
+
+	//"github.com/Mind-chain/mind/command/polybft"
+	//"github.com/Mind-chain/mind/command/polybftsecrets"
+	//"github.com/Mind-chain/mind/command/regenesis"
+	//"github.com/Mind-chain/mind/command/rootchain"
+	"github.com/Mind-chain/mind/command/secrets"
+	"github.com/Mind-chain/mind/command/server"
+	"github.com/Mind-chain/mind/command/status"
+	"github.com/Mind-chain/mind/command/txpool"
+	"github.com/Mind-chain/mind/command/version"
 )
 
 type RootCommand struct {
@@ -32,7 +33,7 @@ type RootCommand struct {
 func NewRootCommand() *RootCommand {
 	rootCommand := &RootCommand{
 		baseCmd: &cobra.Command{
-			Short: "MSC is a framework for building Ethereum-compatible Blockchain networks",
+			Short: "The core node CLI application of Mind Smart Chain",
 		},
 	}
 
@@ -50,17 +51,17 @@ func (rc *RootCommand) registerSubCommands() {
 		status.GetCommand(),
 		secrets.GetCommand(),
 		peers.GetCommand(),
-		rootchain.GetCommand(),
+		//	rootchain.GetCommand(),
 		monitor.GetCommand(),
 		ibft.GetCommand(),
 		backup.GetCommand(),
 		genesis.GetCommand(),
 		server.GetCommand(),
 		license.GetCommand(),
-		polybftsecrets.GetCommand(),
-		polybft.GetCommand(),
-		bridge.GetCommand(),
-		regenesis.GetCommand(),
+	//	polybftsecrets.GetCommand(),
+	//	polybft.GetCommand(),
+	//	bridge.GetCommand(),
+	//regenesis.GetCommand(),
 	)
 }
 

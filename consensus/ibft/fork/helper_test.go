@@ -7,12 +7,12 @@ import (
 	"path"
 	"testing"
 
-	"github.com/0xPolygon/polygon-edge/crypto"
-	testHelper "github.com/0xPolygon/polygon-edge/helper/tests"
-	"github.com/0xPolygon/polygon-edge/types"
-	"github.com/0xPolygon/polygon-edge/validators"
-	"github.com/0xPolygon/polygon-edge/validators/store"
-	"github.com/0xPolygon/polygon-edge/validators/store/snapshot"
+	"github.com/Mind-chain/mind/crypto"
+	testHelper "github.com/Mind-chain/mind/helper/tests"
+	"github.com/Mind-chain/mind/types"
+	"github.com/Mind-chain/mind/validators"
+	"github.com/Mind-chain/mind/validators/store"
+	"github.com/Mind-chain/mind/validators/store/snapshot"
 	"github.com/stretchr/testify/assert"
 )
 

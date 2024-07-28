@@ -17,14 +17,14 @@ import (
 	"github.com/umbracle/ethgo"
 	"github.com/umbracle/ethgo/jsonrpc"
 
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/contracts/abis"
-	"github.com/0xPolygon/polygon-edge/crypto"
-	"github.com/0xPolygon/polygon-edge/e2e/framework"
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/helper/tests"
-	"github.com/0xPolygon/polygon-edge/types"
-	"github.com/0xPolygon/polygon-edge/validators"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/contracts/abis"
+	"github.com/Mind-chain/mind/crypto"
+	"github.com/Mind-chain/mind/e2e/framework"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/helper/tests"
+	"github.com/Mind-chain/mind/types"
+	"github.com/Mind-chain/mind/validators"
 )
 
 func TestPreminedBalance(t *testing.T) {

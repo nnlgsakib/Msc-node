@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/validators/store/snapshot"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/validators/store/snapshot"
 )
 
 // loadSnapshotMetadata loads Metadata from file

@@ -6,9 +6,9 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/crypto"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/crypto"
+	"github.com/Mind-chain/mind/types"
 	lru "github.com/hashicorp/golang-lru"
 	"github.com/umbracle/ethgo"
 )

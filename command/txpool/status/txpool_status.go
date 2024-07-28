@@ -3,11 +3,11 @@ package status
 import (
 	"context"
 
-	"github.com/0xPolygon/polygon-edge/command"
-	"github.com/0xPolygon/polygon-edge/command/helper"
+	"github.com/Mind-chain/mind/command"
+	"github.com/Mind-chain/mind/command/helper"
 	"github.com/spf13/cobra"
 
-	txpoolOp "github.com/0xPolygon/polygon-edge/txpool/proto"
+	txpoolOp "github.com/Mind-chain/mind/txpool/proto"
 	empty "google.golang.org/protobuf/types/known/emptypb"
 )
 

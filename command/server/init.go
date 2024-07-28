@@ -6,16 +6,16 @@ import (
 	"math"
 	"net"
 
-	"github.com/0xPolygon/polygon-edge/command/server/config"
+	"github.com/Mind-chain/mind/command/server/config"
 
-	helperCommon "github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/network/common"
+	helperCommon "github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/network/common"
 
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/command/helper"
-	"github.com/0xPolygon/polygon-edge/network"
-	"github.com/0xPolygon/polygon-edge/secrets"
-	"github.com/0xPolygon/polygon-edge/server"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/command/helper"
+	"github.com/Mind-chain/mind/network"
+	"github.com/Mind-chain/mind/secrets"
+	"github.com/Mind-chain/mind/server"
 )
 
 var (

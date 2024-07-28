@@ -7,10 +7,10 @@ import (
 	"math/big"
 	"os"
 
-	"github.com/0xPolygon/polygon-edge/blockchain"
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/helper/progress"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/blockchain"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/helper/progress"
+	"github.com/Mind-chain/mind/types"
 )
 
 const (

@@ -1,8 +1,8 @@
 package store
 
 import (
-	"github.com/0xPolygon/polygon-edge/consensus/ibft/signer"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/consensus/ibft/signer"
+	"github.com/Mind-chain/mind/types"
 )
 
 // Utilities for test

@@ -1,20 +1,25 @@
 package jsonrpc
 
 import (
-	"encoding/hex"
+	//"encoding/hex"
 	"errors"
 	"fmt"
 	"math/big"
 
 	"github.com/hashicorp/go-hclog"
 
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/gasprice"
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/helper/progress"
-	"github.com/0xPolygon/polygon-edge/state"
-	"github.com/0xPolygon/polygon-edge/state/runtime"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/gasprice"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/helper/hex"
+	"github.com/Mind-chain/mind/helper/progress"
+	"github.com/Mind-chain/mind/state"
+	"github.com/Mind-chain/mind/state/runtime"
+	"github.com/Mind-chain/mind/types"
+)
+
+const (
+	defaultMinGasPrice = "0x2540BE400" // 10 GWei
 )
 
 type ethTxPoolStore interface {
@@ -101,6 +106,12 @@ var (
 //nolint:stylecheck
 func (e *Eth) ChainId() (interface{}, error) {
 	return argUintPtr(e.chainID), nil
+}
+
+// MSC don't have any support for eth_accounts (current end point is not functional ) just added this dummy to turn msc compatible for all ethereum tools
+func (e *Eth) Accounts() ([]types.Address, error) {
+	address := "0x0000000000000000000000000000000000000000"
+	return []types.Address{types.StringToAddress(address)}, nil
 }
 
 func (e *Eth) Syncing() (interface{}, error) {
@@ -209,9 +220,10 @@ func (e *Eth) SendRawTransaction(buf argBytes) (interface{}, error) {
 }
 
 // SendTransaction rejects eth_sendTransaction json-rpc call as we don't support wallet management
+
 func (e *Eth) SendTransaction(_ *txnArgs) (interface{}, error) {
 	return nil, fmt.Errorf("request calls to eth_sendTransaction method are not supported," +
-		" use eth_sendRawTransaction instead")
+		" use eth_sendRawTransaction insead")
 }
 
 // GetTransactionByHash returns a transaction by its hash.
@@ -399,14 +411,25 @@ func (e *Eth) GetStorageAt(
 // 	// Return --price-limit flag defined value if it is greater than avgGasPrice
 // 	return argUint64(common.Max(e.priceLimit, avgGasPrice)), nil
 // }
-func (e *Eth) GasPrice() (interface{}, error) {
-	// Fetch average gas price in uint64
-	//avgGasPrice := e.store.GetAvgGasPrice().Uint64()
-	const fixedGasPrice = 90926103
-	// Return --price-limit flag defined value if it is greater than avgGasPrice
-	return argUint64(common.Max(e.priceLimit, fixedGasPrice)), nil
-}
 
+func (e *Eth) GasPrice() (interface{}, error) {
+
+	// Grab the average gas price and convert it to a hex value
+	priceLimit := new(big.Int).SetUint64(e.priceLimit)
+	minGasPrice, _ := new(big.Int).SetString(defaultMinGasPrice, 0)
+
+	if priceLimit.Cmp(minGasPrice) == -1 {
+		priceLimit = minGasPrice
+	}
+
+	// query avg gas price
+	v := e.store.GetAvgGasPrice()
+	if v.Cmp(priceLimit) == -1 {
+		v = priceLimit
+	}
+
+	return hex.EncodeBig(v), nil
+}
 
 type overrideAccount struct {
 	Nonce     *argUint64                 `json:"nonce"`
@@ -517,7 +540,7 @@ func (e *Eth) EstimateGas(arg *txnArgs, rawNum *BlockNumber) (interface{}, error
 
 		return argUint64(gasCost), nil
 	}
-	
+
 	//forksInTime := e.store.GetForksInTime(header.Number)
 
 	var standardGas uint64

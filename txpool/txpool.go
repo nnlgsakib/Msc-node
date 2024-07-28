@@ -7,14 +7,14 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/0xPolygon/polygon-edge/blockchain"
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/forkmanager"
-	"github.com/0xPolygon/polygon-edge/network"
-	"github.com/0xPolygon/polygon-edge/state"
-	"github.com/0xPolygon/polygon-edge/state/runtime"
-	"github.com/0xPolygon/polygon-edge/txpool/proto"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/blockchain"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/forkmanager"
+	"github.com/Mind-chain/mind/network"
+	"github.com/Mind-chain/mind/state"
+	"github.com/Mind-chain/mind/state/runtime"
+	"github.com/Mind-chain/mind/txpool/proto"
+	"github.com/Mind-chain/mind/types"
 	"github.com/armon/go-metrics"
 	"github.com/golang/protobuf/ptypes/any"
 	"github.com/hashicorp/go-hclog"
@@ -659,6 +659,12 @@ func (p *TxPool) validateTx(tx *types.Transaction) error {
 
 		// Reject underpriced transactions
 		if tx.GasFeeCap.Cmp(new(big.Int).SetUint64(baseFee)) < 0 {
+			metrics.IncrCounter([]string{txPoolMetrics, "underpriced_tx"}, 1)
+			return ErrUnderpriced
+		}
+	} else {
+		// Legacy approach to check if the given tx is not underpriced when london hardfork is enabled
+		if forks.London && tx.GasPrice.Cmp(new(big.Int).SetUint64(baseFee)) < 0 {
 			metrics.IncrCounter([]string{txPoolMetrics, "underpriced_tx"}, 1)
 
 			return ErrUnderpriced

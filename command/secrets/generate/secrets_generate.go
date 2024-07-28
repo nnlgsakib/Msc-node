@@ -3,11 +3,11 @@ package generate
 import (
 	"fmt"
 
-	"github.com/0xPolygon/polygon-edge/command"
-	"github.com/0xPolygon/polygon-edge/command/helper"
+	"github.com/Mind-chain/mind/command"
+	"github.com/Mind-chain/mind/command/helper"
 	"github.com/spf13/cobra"
 
-	"github.com/0xPolygon/polygon-edge/secrets"
+	"github.com/Mind-chain/mind/secrets"
 )
 
 func GetCommand() *cobra.Command {

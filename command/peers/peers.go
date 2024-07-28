@@ -1,10 +1,10 @@
 package peers
 
 import (
-	"github.com/0xPolygon/polygon-edge/command/helper"
-	"github.com/0xPolygon/polygon-edge/command/peers/add"
-	"github.com/0xPolygon/polygon-edge/command/peers/list"
-	"github.com/0xPolygon/polygon-edge/command/peers/status"
+	"github.com/Mind-chain/mind/command/helper"
+	"github.com/Mind-chain/mind/command/peers/add"
+	"github.com/Mind-chain/mind/command/peers/list"
+	"github.com/Mind-chain/mind/command/peers/status"
 	"github.com/spf13/cobra"
 )
 

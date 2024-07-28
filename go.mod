@@ -1,4 +1,4 @@
-module github.com/0xPolygon/polygon-edge
+module github.com/Mind-chain/mind
 
 go 1.20
 
@@ -232,3 +232,5 @@ require (
 	gotest.tools/v3 v3.0.2 // indirect
 	inet.af/netaddr v0.0.0-20220811202034-502d2d690317 // indirect
 )
+
+// replace github.com/Mind-chain/mind latest => github.com/nlgsakib/mind latest

@@ -3,9 +3,9 @@ package init
 import (
 	"errors"
 
-	"github.com/0xPolygon/polygon-edge/command"
-	"github.com/0xPolygon/polygon-edge/secrets"
-	"github.com/0xPolygon/polygon-edge/secrets/helper"
+	"github.com/Mind-chain/mind/command"
+	"github.com/Mind-chain/mind/secrets"
+	"github.com/Mind-chain/mind/secrets/helper"
 )
 
 const (

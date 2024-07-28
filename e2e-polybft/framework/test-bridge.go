@@ -13,15 +13,15 @@ import (
 
 	"golang.org/x/sync/errgroup"
 
-	"github.com/0xPolygon/polygon-edge/command"
-	bridgeCommon "github.com/0xPolygon/polygon-edge/command/bridge/common"
-	"github.com/0xPolygon/polygon-edge/command/genesis"
-	"github.com/0xPolygon/polygon-edge/command/polybftsecrets"
-	rootHelper "github.com/0xPolygon/polygon-edge/command/rootchain/helper"
-	"github.com/0xPolygon/polygon-edge/command/rootchain/server"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/wallet"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/command"
+	bridgeCommon "github.com/Mind-chain/mind/command/bridge/common"
+	"github.com/Mind-chain/mind/command/genesis"
+	"github.com/Mind-chain/mind/command/polybftsecrets"
+	rootHelper "github.com/Mind-chain/mind/command/rootchain/helper"
+	"github.com/Mind-chain/mind/command/rootchain/server"
+	"github.com/Mind-chain/mind/consensus/polybft"
+	"github.com/Mind-chain/mind/consensus/polybft/wallet"
+	"github.com/Mind-chain/mind/types"
 )
 
 type TestBridge struct {

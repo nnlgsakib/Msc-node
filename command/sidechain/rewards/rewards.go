@@ -7,16 +7,16 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/umbracle/ethgo"
 
-	"github.com/0xPolygon/polygon-edge/command"
-	"github.com/0xPolygon/polygon-edge/command/helper"
-	"github.com/0xPolygon/polygon-edge/command/polybftsecrets"
-	rootHelper "github.com/0xPolygon/polygon-edge/command/rootchain/helper"
-	sidechainHelper "github.com/0xPolygon/polygon-edge/command/sidechain"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/contractsapi"
-	"github.com/0xPolygon/polygon-edge/contracts"
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/txrelayer"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/command"
+	"github.com/Mind-chain/mind/command/helper"
+	"github.com/Mind-chain/mind/command/polybftsecrets"
+	rootHelper "github.com/Mind-chain/mind/command/rootchain/helper"
+	sidechainHelper "github.com/Mind-chain/mind/command/sidechain"
+	"github.com/Mind-chain/mind/consensus/polybft/contractsapi"
+	"github.com/Mind-chain/mind/contracts"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/txrelayer"
+	"github.com/Mind-chain/mind/types"
 )
 
 var params withdrawRewardsParams

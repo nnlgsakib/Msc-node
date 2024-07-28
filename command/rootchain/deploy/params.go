@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/0xPolygon/polygon-edge/consensus/polybft"
+	"github.com/Mind-chain/mind/consensus/polybft"
 )
 
 const (

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/types"
 )
 
 var (

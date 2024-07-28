@@ -6,11 +6,11 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/contractsapi"
-	"github.com/0xPolygon/polygon-edge/contracts"
-	"github.com/0xPolygon/polygon-edge/e2e-polybft/framework"
-	"github.com/0xPolygon/polygon-edge/state/runtime/addresslist"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/consensus/polybft/contractsapi"
+	"github.com/Mind-chain/mind/contracts"
+	"github.com/Mind-chain/mind/e2e-polybft/framework"
+	"github.com/Mind-chain/mind/state/runtime/addresslist"
+	"github.com/Mind-chain/mind/types"
 	"github.com/stretchr/testify/require"
 	"github.com/umbracle/ethgo/wallet"
 )

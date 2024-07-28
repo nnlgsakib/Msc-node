@@ -5,11 +5,11 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/0xPolygon/polygon-edge/helper/hex"
-	"github.com/0xPolygon/polygon-edge/state/runtime"
-	"github.com/0xPolygon/polygon-edge/state/runtime/evm"
-	"github.com/0xPolygon/polygon-edge/state/runtime/tracer"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/helper/hex"
+	"github.com/Mind-chain/mind/state/runtime"
+	"github.com/Mind-chain/mind/state/runtime/evm"
+	"github.com/Mind-chain/mind/state/runtime/tracer"
+	"github.com/Mind-chain/mind/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -9,12 +9,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/bitmap"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/contractsapi"
-	bls "github.com/0xPolygon/polygon-edge/consensus/polybft/signer"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/validator"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/wallet"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/consensus/polybft/bitmap"
+	"github.com/Mind-chain/mind/consensus/polybft/contractsapi"
+	bls "github.com/Mind-chain/mind/consensus/polybft/signer"
+	"github.com/Mind-chain/mind/consensus/polybft/validator"
+	"github.com/Mind-chain/mind/consensus/polybft/wallet"
+	"github.com/Mind-chain/mind/types"
 	"github.com/hashicorp/go-hclog"
 	"github.com/stretchr/testify/require"
 )

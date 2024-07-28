@@ -1,6 +1,6 @@
 package forkmanager
 
-import "github.com/0xPolygon/polygon-edge/helper/common"
+import "github.com/Mind-chain/mind/helper/common"
 
 const InitialFork = "initialfork"
 

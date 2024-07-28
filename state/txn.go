@@ -8,10 +8,10 @@ import (
 	iradix "github.com/hashicorp/go-immutable-radix"
 	lru "github.com/hashicorp/golang-lru"
 
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/crypto"
-	"github.com/0xPolygon/polygon-edge/state/runtime"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/crypto"
+	"github.com/Mind-chain/mind/state/runtime"
+	"github.com/Mind-chain/mind/types"
 )
 
 var emptyStateHash = types.StringToHash("0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421")
@@ -272,13 +272,19 @@ func (txn *Txn) SetStorage(
 	if original == value {
 		if original == types.ZeroHash { // reset to original nonexistent slot (2.2.2.1)
 			// Storage was used as memory (allocation and deallocation occurred within the same contract)
-			if config.Istanbul {
+			if config.EIP2929 {
+				// Refund: SstoreSetGasEIP2200 - WarmStorageReadCostEIP2929
+				txn.AddRefund(19900)
+			} else if config.Istanbul {
 				txn.AddRefund(19200)
 			} else {
 				txn.AddRefund(19800)
 			}
 		} else { // reset to original existing slot (2.2.2.2)
-			if config.Istanbul {
+			if config.EIP2929 {
+				// Refund: SstoreResetGasEIP2200 - ColdStorageReadCostEIP2929 - WarmStorageReadCostEIP2929
+				txn.AddRefund(2800)
+			} else if config.Istanbul {
 				txn.AddRefund(4200)
 			} else {
 				txn.AddRefund(4800)

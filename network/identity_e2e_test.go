@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/0xPolygon/polygon-edge/chain"
+	"github.com/Mind-chain/mind/chain"
 	"github.com/stretchr/testify/assert"
 )
 

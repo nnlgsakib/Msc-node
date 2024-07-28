@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/0xPolygon/polygon-edge/types"
-	"github.com/0xPolygon/polygon-edge/validators"
+	"github.com/Mind-chain/mind/types"
+	"github.com/Mind-chain/mind/validators"
 	"github.com/umbracle/fastrlp"
 )
 

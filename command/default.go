@@ -3,8 +3,8 @@ package command
 import (
 	"github.com/umbracle/ethgo"
 
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/server"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/server"
 )
 
 const (

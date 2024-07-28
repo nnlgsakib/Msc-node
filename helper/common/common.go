@@ -17,7 +17,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/0xPolygon/polygon-edge/helper/hex"
+	"github.com/Mind-chain/mind/helper/hex"
 	"github.com/sethvargo/go-retry"
 )
 
@@ -351,6 +351,7 @@ func BigIntDivCeil(a, b *big.Int) *big.Int {
 		Sub(result, big.NewInt(1)).
 		Div(result, b)
 }
+
 // SafeAddUint64 sums two unsigned int64 numbers if there is no overflow.
 // In case there is an overflow, it would return 0 and true, otherwise sum and false.
 func SafeAddUint64(a, b uint64) (uint64, bool) {
@@ -361,6 +362,7 @@ func SafeAddUint64(a, b uint64) (uint64, bool) {
 
 	return sum, false
 }
+
 // EncodeUint64ToBytes encodes provided uint64 to big endian byte slice
 func EncodeUint64ToBytes(value uint64) []byte {
 	result := make([]byte, 8)

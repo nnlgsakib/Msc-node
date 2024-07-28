@@ -7,11 +7,11 @@ import (
 
 	"sync"
 
-	"github.com/0xPolygon/polygon-edge/chain"
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/helper/hex"
-	"github.com/0xPolygon/polygon-edge/state/runtime"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/chain"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/helper/hex"
+	"github.com/Mind-chain/mind/state/runtime"
+	"github.com/Mind-chain/mind/types"
 )
 
 var statePool = sync.Pool{
@@ -79,6 +79,7 @@ type state struct {
 
 	returnData []byte
 	ret        []byte
+	accessList *runtime.AccessList
 }
 
 func (c *state) reset() {

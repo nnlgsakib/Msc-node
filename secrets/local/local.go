@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/secrets"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/secrets"
 	"github.com/hashicorp/go-hclog"
 )
 

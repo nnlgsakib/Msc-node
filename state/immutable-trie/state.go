@@ -5,8 +5,8 @@ import (
 
 	lru "github.com/hashicorp/golang-lru"
 
-	"github.com/0xPolygon/polygon-edge/state"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/state"
+	"github.com/Mind-chain/mind/types"
 )
 
 type State struct {

@@ -5,12 +5,12 @@ import (
 	"os"
 	"strings"
 
-	"github.com/0xPolygon/polygon-edge/crypto"
-	"github.com/0xPolygon/polygon-edge/helper/common"
-	"github.com/0xPolygon/polygon-edge/secrets"
-	"github.com/0xPolygon/polygon-edge/secrets/local"
-	"github.com/0xPolygon/polygon-edge/types"
-	"github.com/0xPolygon/polygon-edge/validators"
+	"github.com/Mind-chain/mind/crypto"
+	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/secrets"
+	"github.com/Mind-chain/mind/secrets/local"
+	"github.com/Mind-chain/mind/types"
+	"github.com/Mind-chain/mind/validators"
 	"github.com/hashicorp/go-hclog"
 )
 

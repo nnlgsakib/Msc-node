@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/0xPolygon/polygon-edge/blockchain"
-	"github.com/0xPolygon/polygon-edge/consensus/polybft/validator"
-	"github.com/0xPolygon/polygon-edge/types"
+	"github.com/Mind-chain/mind/blockchain"
+	"github.com/Mind-chain/mind/consensus/polybft/validator"
+	"github.com/Mind-chain/mind/types"
 	"github.com/hashicorp/go-hclog"
 )
 

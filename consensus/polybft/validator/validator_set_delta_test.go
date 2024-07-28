@@ -5,7 +5,7 @@ import (
 	"math/big"
 	"testing"
 
-	bls "github.com/0xPolygon/polygon-edge/consensus/polybft/signer"
+	bls "github.com/Mind-chain/mind/consensus/polybft/signer"
 	"github.com/stretchr/testify/require"
 	"github.com/umbracle/fastrlp"
 )
