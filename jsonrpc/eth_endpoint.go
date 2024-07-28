@@ -1,7 +1,7 @@
 package jsonrpc
 
 import (
-	"encoding/hex"
+	//"encoding/hex"
 	"errors"
 	"fmt"
 	"math/big"
@@ -11,10 +11,15 @@ import (
 	"github.com/Mind-chain/mind/chain"
 	"github.com/Mind-chain/mind/gasprice"
 	"github.com/Mind-chain/mind/helper/common"
+	"github.com/Mind-chain/mind/helper/hex"
 	"github.com/Mind-chain/mind/helper/progress"
 	"github.com/Mind-chain/mind/state"
 	"github.com/Mind-chain/mind/state/runtime"
 	"github.com/Mind-chain/mind/types"
+)
+
+const (
+	defaultMinGasPrice = "0x2540BE400" // 10 GWei
 )
 
 type ethTxPoolStore interface {
@@ -399,19 +404,32 @@ func (e *Eth) GetStorageAt(
 
 // GasPrice returns the average gas price based on the last x blocks
 // taking into consideration operator defined price limit
-func (e *Eth) GasPrice() (interface{}, error) {
-	// Fetch average gas price in uint64
-	avgGasPrice := e.store.GetAvgGasPrice().Uint64()
-
-	// Return --price-limit flag defined value if it is greater than avgGasPrice
-	return argUint64(common.Max(e.priceLimit, avgGasPrice)), nil
-}
-
 // func (e *Eth) GasPrice() (interface{}, error) {
-// 	// Return constant gas price of 0.82 Gwei
-// 	const fixedGasPrice = 3169319900
-// 	return fixedGasPrice, nil
+// 	// Fetch average gas price in uint64
+// 	avgGasPrice := e.store.GetAvgGasPrice().Uint64()
+
+// 	// Return --price-limit flag defined value if it is greater than avgGasPrice
+// 	return argUint64(common.Max(e.priceLimit, avgGasPrice)), nil
 // }
+
+func (e *Eth) GasPrice() (interface{}, error) {
+
+	// Grab the average gas price and convert it to a hex value
+	priceLimit := new(big.Int).SetUint64(e.priceLimit)
+	minGasPrice, _ := new(big.Int).SetString(defaultMinGasPrice, 0)
+
+	if priceLimit.Cmp(minGasPrice) == -1 {
+		priceLimit = minGasPrice
+	}
+
+	// query avg gas price
+	v := e.store.GetAvgGasPrice()
+	if v.Cmp(priceLimit) == -1 {
+		v = priceLimit
+	}
+
+	return hex.EncodeBig(v), nil
+}
 
 type overrideAccount struct {
 	Nonce     *argUint64                 `json:"nonce"`
