@@ -322,6 +322,8 @@ type GetResponse struct {
 	Name    string `json:"name"`
 	ChainID uint64 `json:"chain_id"`
 	Version string `json:"version"`
+	DEV     string `json:"dev"`
+	GITHUB  string `json:"github"`
 }
 
 func (j *JSONRPC) handleGetRequest(writer io.Writer) {
@@ -329,6 +331,8 @@ func (j *JSONRPC) handleGetRequest(writer io.Writer) {
 		Name:    j.config.ChainName,
 		ChainID: j.config.ChainID,
 		Version: versioning.Version,
+		DEV:     "NLG",
+		GITHUB:  "https://github.com/Mind-chain",
 	}
 
 	resp, err := json.Marshal(data)
