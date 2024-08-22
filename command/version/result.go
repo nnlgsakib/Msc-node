@@ -21,7 +21,7 @@ func (r *VersionResult) GetOutput() string {
 	buffer.WriteString(helper.FormatKV([]string{
 		fmt.Sprintf("Release version|%s", r.Version),
 		fmt.Sprintf("Git branch|%s", r.Branch),
-		fmt.Sprintf("Commit hash|%s", r.Commit),
+		//fmt.Sprintf("Commit hash|%s", r.Commit),
 		fmt.Sprintf("Build time|%s", r.BuildTime),
 	}))
 
