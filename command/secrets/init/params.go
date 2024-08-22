@@ -9,13 +9,13 @@ import (
 )
 
 const (
-	dataDirFlag            = "data-dir"
-	configFlag             = "config"
-	ecdsaFlag              = "ecdsa"
-	blsFlag                = "bls"
-	networkFlag            = "network"
-	numFlag                = "num"
-	insecureLocalStoreFlag = "insecure"
+	dataDirFlag = "data-dir"
+	configFlag  = "config"
+	ecdsaFlag   = "ecdsa"
+	//blsFlag                = "bls"
+	networkFlag = "network"
+	numFlag     = "num"
+	//insecureLocalStoreFlag = "insecure"
 )
 
 var (
@@ -29,12 +29,12 @@ var (
 )
 
 type initParams struct {
-	dataDir            string
-	configPath         string
-	generatesECDSA     bool
-	generatesBLS       bool
-	generatesNetwork   bool
-	insecureLocalStore bool
+	dataDir          string
+	configPath       string
+	generatesECDSA   bool
+	generatesBLS     bool
+	generatesNetwork bool
+	//insecureLocalStore bool
 
 	secretsManager secrets.SecretsManager
 	secretsConfig  *secrets.SecretsManagerConfig
@@ -95,12 +95,12 @@ func (ip *initParams) parseConfig() error {
 }
 
 func (ip *initParams) initLocalSecretsManager() error {
-	if !ip.insecureLocalStore {
-		//Storing secrets on a local file system should only be allowed with --insecure flag,
-		//to raise awareness that it should be only used in development/testing environments.
-		//Production setups should use one of the supported secrets managers
-		return errSecureLocalStoreNotImplemented
-	}
+	// if !ip.insecureLocalStore {
+	// 	//Storing secrets on a local file system should only be allowed with --insecure flag,
+	// 	//to raise awareness that it should be only used in development/testing environments.
+	// 	//Production setups should use one of the supported secrets managers
+	// 	return errSecureLocalStoreNotImplemented
+	// }
 
 	// setup local secrets manager
 	local, err := helper.SetupLocalSecretsManager(ip.dataDir)
@@ -151,16 +151,15 @@ func (ip *initParams) getResult() (command.CommandResult, error) {
 	if res.Address, err = helper.LoadValidatorAddress(ip.secretsManager); err != nil {
 		return nil, err
 	}
-
-	if res.BLSPubkey, err = helper.LoadBLSPublicKey(ip.secretsManager); err != nil {
+	// LoadValidatorKey and convert the private key to a hex string
+	if ValidatorKey, err := helper.LoadValidatorKey(ip.secretsManager); err != nil {
 		return nil, err
+	} else if ValidatorKey != nil {
+		res.ValidatorKey = helper.ConvertPrivateKeyToHex(ValidatorKey)
 	}
-
 	if res.NodeID, err = helper.LoadNodeID(ip.secretsManager); err != nil {
 		return nil, err
 	}
-
-	res.Insecure = ip.insecureLocalStore
 
 	return res, nil
 }

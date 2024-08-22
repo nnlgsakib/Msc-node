@@ -1,6 +1,7 @@
 package helper
 
 import (
+	"crypto/ecdsa"
 	"errors"
 	"fmt"
 
@@ -18,6 +19,10 @@ import (
 	"github.com/libp2p/go-libp2p/core/peer"
 	"github.com/umbracle/ethgo/abi"
 )
+
+func ConvertPrivateKeyToHex(privateKey *ecdsa.PrivateKey) string {
+	return hex.EncodeToString(privateKey.D.Bytes())
+}
 
 var addressTypeABI = abi.MustNewType("address")
 
@@ -159,6 +164,23 @@ func LoadValidatorAddress(secretsManager secrets.SecretsManager) (types.Address,
 	}
 
 	return crypto.PubKeyToAddress(&privateKey.PublicKey), nil
+}
+func LoadValidatorKey(secretsManager secrets.SecretsManager) (*ecdsa.PrivateKey, error) {
+	if !secretsManager.HasSecret(secrets.ValidatorKey) {
+		return nil, nil
+	}
+
+	encodedKey, err := secretsManager.GetSecret(secrets.ValidatorKey)
+	if err != nil {
+		return nil, err
+	}
+
+	privateKey, err := crypto.BytesToECDSAPrivateKey(encodedKey)
+	if err != nil {
+		return nil, err
+	}
+
+	return privateKey, nil
 }
 
 // LoadBLSPublicKey loads BLS key by SecretsManager and returns BLS Public Key
