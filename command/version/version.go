@@ -21,8 +21,8 @@ func runCommand(cmd *cobra.Command, _ []string) {
 
 	outputter.SetCommandResult(
 		&VersionResult{
-			Version:   versioning.Version,
-			Commit:    versioning.Commit,
+			Version: versioning.Version,
+			//Commit:    versioning.Commit,
 			Branch:    versioning.Branch,
 			BuildTime: versioning.BuildTime,
 		},
