@@ -138,10 +138,10 @@ func getParamsList() []initParams {
 	paramsList := make([]initParams, initNumber)
 	for i := 1; i <= initNumber; i++ {
 		paramsList[i-1] = initParams{
-			dataDir:          fmt.Sprintf("%s%d", basicParams.dataDir, i),
-			configPath:       basicParams.configPath,
-			generatesECDSA:   basicParams.generatesECDSA,
-			generatesBLS:     basicParams.generatesBLS,
+			dataDir:        fmt.Sprintf("%s%d", basicParams.dataDir, i),
+			configPath:     basicParams.configPath,
+			generatesECDSA: basicParams.generatesECDSA,
+			//	generatesBLS:     basicParams.generatesBLS,
 			generatesNetwork: basicParams.generatesNetwork,
 			//insecureLocalStore: basicParams.insecureLocalStore,
 		}
