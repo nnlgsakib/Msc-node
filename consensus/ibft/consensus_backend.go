@@ -114,6 +114,7 @@ func (i *backendIBFT) InsertProposal(
 		"validation_type", i.currentSigner.Type(),
 		"validators", i.currentValidators.Len(),
 		"committed", len(committedSeals),
+		"validated_by", hex.EncodeToHex(newBlock.Header.Miner),
 	)
 
 	if err := i.currentHooks.PostInsertBlock(newBlock); err != nil {
