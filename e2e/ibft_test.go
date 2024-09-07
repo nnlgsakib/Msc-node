@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	ibftSigner "github.com/Mind-chain/mind/consensus/ibft/signer"
+	ibftSigner "github.com/Mind-chain/mind/consensus/NLG-ibft/signer"
 	"github.com/Mind-chain/mind/e2e/framework"
 	"github.com/Mind-chain/mind/helper/tests"
 	"github.com/Mind-chain/mind/types"

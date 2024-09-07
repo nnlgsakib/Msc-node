@@ -15,18 +15,20 @@ import (
 	"github.com/Mind-chain/mind/blockchain/storage"
 	"github.com/Mind-chain/mind/blockchain/storage/leveldb"
 	"github.com/Mind-chain/mind/blockchain/storage/memory"
-	consensusPolyBFT "github.com/Mind-chain/mind/consensus/polybft"
-	"github.com/Mind-chain/mind/forkmanager"
+
+	//consensusPolyBFT
 	"github.com/Mind-chain/mind/gasprice"
 
 	"github.com/Mind-chain/mind/archive"
 	"github.com/Mind-chain/mind/blockchain"
 	"github.com/Mind-chain/mind/chain"
 	"github.com/Mind-chain/mind/consensus"
-	"github.com/Mind-chain/mind/consensus/polybft/statesyncrelayer"
-	"github.com/Mind-chain/mind/consensus/polybft/wallet"
+
+	//"github.com/Mind-chain/mind/consensus/polybft/statesyncrelayer"
+	//"github.com/Mind-chain/mind/consensus/polybft/wallet"
 	"github.com/Mind-chain/mind/contracts"
 	"github.com/Mind-chain/mind/crypto"
+	"github.com/Mind-chain/mind/forkmanager"
 	"github.com/Mind-chain/mind/helper/common"
 	"github.com/Mind-chain/mind/helper/progress"
 	"github.com/Mind-chain/mind/jsonrpc"
@@ -44,7 +46,6 @@ import (
 	"github.com/hashicorp/go-hclog"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/umbracle/ethgo"
 	"google.golang.org/grpc"
 )
 
@@ -90,7 +91,7 @@ type Server struct {
 	restoreProgression *progress.ProgressionWrapper
 
 	// stateSyncRelayer is handling state syncs execution (Polybft exclusive)
-	stateSyncRelayer *statesyncrelayer.StateSyncRelayer
+	//stateSyncRelayer *statesyncrelayer.StateSyncRelayer
 
 	// gasHelper is providing functions regarding gas and fees
 	gasHelper *gasprice.GasHelper
@@ -242,27 +243,27 @@ func NewServer(config *Config) (*Server, error) {
 
 	var initialStateRoot = types.ZeroHash
 
-	if ConsensusType(engineName) == PolyBFTConsensus {
-		polyBFTConfig, err := consensusPolyBFT.GetPolyBFTConfig(config.Chain)
-		if err != nil {
-			return nil, err
-		}
+	// if ConsensusType(engineName) == PolyBFTConsensus {
+	// 	polyBFTConfig, err := consensusPolyBFT.GetPolyBFTConfig(config.Chain)
+	// 	if err != nil {
+	// 		return nil, err
+	// 	}
 
-		if polyBFTConfig.InitialTrieRoot != types.ZeroHash {
-			checkedInitialTrieRoot, err := itrie.HashChecker(polyBFTConfig.InitialTrieRoot.Bytes(), stateStorage)
-			if err != nil {
-				return nil, fmt.Errorf("error on state root verification %w", err)
-			}
+	// 	if polyBFTConfig.InitialTrieRoot != types.ZeroHash {
+	// 		checkedInitialTrieRoot, err := itrie.HashChecker(polyBFTConfig.InitialTrieRoot.Bytes(), stateStorage)
+	// 		if err != nil {
+	// 			return nil, fmt.Errorf("error on state root verification %w", err)
+	// 		}
 
-			if checkedInitialTrieRoot != polyBFTConfig.InitialTrieRoot {
-				return nil, errors.New("invalid initial state root")
-			}
+	// 		if checkedInitialTrieRoot != polyBFTConfig.InitialTrieRoot {
+	// 			return nil, errors.New("invalid initial state root")
+	// 		}
 
-			logger.Info("Initial state root checked and correct")
+	// 		logger.Info("Initial state root checked and correct")
 
-			initialStateRoot = polyBFTConfig.InitialTrieRoot
-		}
-	}
+	// 		initialStateRoot = polyBFTConfig.InitialTrieRoot
+	// 	}
+	// }
 
 	genesisRoot, err := m.executor.WriteGenesis(config.Chain.Genesis.Alloc, initialStateRoot)
 	if err != nil {
@@ -397,12 +398,12 @@ func NewServer(config *Config) (*Server, error) {
 		return nil, err
 	}
 
-	// start relayer
-	if config.Relayer {
-		if err := m.setupRelayer(); err != nil {
-			return nil, err
-		}
-	}
+	// // start relayer
+	// if config.Relayer {
+	// 	if err := m.setupRelayer(); err != nil {
+	// 		return nil, err
+	// 	}
+	// }
 
 	m.txpool.SetBaseFee(m.blockchain.Header())
 	m.txpool.Start()
@@ -612,38 +613,38 @@ func extractBlockTime(engineConfig map[string]interface{}) (common.Duration, err
 }
 
 // setupRelayer sets up the relayer
-func (s *Server) setupRelayer() error {
-	account, err := wallet.NewAccountFromSecret(s.secretsManager)
-	if err != nil {
-		return fmt.Errorf("failed to create account from secret: %w", err)
-	}
+// func (s *Server) setupRelayer() error {
+// 	account, err := wallet.NewAccountFromSecret(s.secretsManager)
+// 	if err != nil {
+// 		return fmt.Errorf("failed to create account from secret: %w", err)
+// 	}
 
-	polyBFTConfig, err := consensusPolyBFT.GetPolyBFTConfig(s.config.Chain)
-	if err != nil {
-		return fmt.Errorf("failed to extract polybft config: %w", err)
-	}
+// 	polyBFTConfig, err := consensusPolyBFT.GetPolyBFTConfig(s.config.Chain)
+// 	if err != nil {
+// 		return fmt.Errorf("failed to extract polybft config: %w", err)
+// 	}
 
-	trackerStartBlockConfig := map[types.Address]uint64{}
-	if polyBFTConfig.Bridge != nil {
-		trackerStartBlockConfig = polyBFTConfig.Bridge.EventTrackerStartBlocks
-	}
+// 	trackerStartBlockConfig := map[types.Address]uint64{}
+// 	if polyBFTConfig.Bridge != nil {
+// 		trackerStartBlockConfig = polyBFTConfig.Bridge.EventTrackerStartBlocks
+// 	}
 
-	relayer := statesyncrelayer.NewRelayer(
-		s.config.DataDir,
-		s.config.JSONRPC.JSONRPCAddr.String(),
-		ethgo.Address(contracts.StateReceiverContract),
-		trackerStartBlockConfig[contracts.StateReceiverContract],
-		s.logger.Named("relayer"),
-		wallet.NewEcdsaSigner(wallet.NewKey(account)),
-	)
+// 	relayer := statesyncrelayer.NewRelayer(
+// 		s.config.DataDir,
+// 		s.config.JSONRPC.JSONRPCAddr.String(),
+// 		ethgo.Address(contracts.StateReceiverContract),
+// 		trackerStartBlockConfig[contracts.StateReceiverContract],
+// 		s.logger.Named("relayer"),
+// 		wallet.NewEcdsaSigner(wallet.NewKey(account)),
+// 	)
 
-	// start relayer
-	if err := relayer.Start(); err != nil {
-		return fmt.Errorf("failed to start relayer: %w", err)
-	}
+// 	// start relayer
+// 	if err := relayer.Start(); err != nil {
+// 		return fmt.Errorf("failed to start relayer: %w", err)
+// 	}
 
-	return nil
-}
+// 	return nil
+// }
 
 type jsonRPCHub struct {
 	state              state.State
@@ -969,9 +970,9 @@ func (s *Server) Close() {
 	}
 
 	// Stop state sync relayer
-	if s.stateSyncRelayer != nil {
-		s.stateSyncRelayer.Stop()
-	}
+	// if s.stateSyncRelayer != nil {
+	// 	s.stateSyncRelayer.Stop()
+	// }
 
 	// Close the txpool's main loop
 	s.txpool.Close()
@@ -1047,11 +1048,11 @@ func initForkManager(engineName string, config *chain.Chain) error {
 	if err := state.RegisterLondonv2(chain.Londonv2); err != nil {
 		return err
 	}
-	if factory := forkManagerFactory[ConsensusType(engineName)]; factory != nil {
-		if err := factory(config.Params.Forks); err != nil {
-			return err
-		}
-	}
+	// if factory := forkManagerFactory[ConsensusType(engineName)]; factory != nil {
+	// 	if err := factory(config.Params.Forks); err != nil {
+	// 		return err
+	// 	}
+	// }
 
 	// Activate initial fork
 	if err := fm.ActivateFork(forkmanager.InitialFork, uint64(0)); err != nil {

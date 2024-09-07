@@ -4,7 +4,7 @@ import (
 	"errors"
 
 	"github.com/Mind-chain/mind/chain"
-	bls "github.com/Mind-chain/mind/consensus/polybft/signer"
+	//	bls ""
 	"github.com/Mind-chain/mind/state/runtime"
 	"github.com/Mind-chain/mind/types"
 	"github.com/umbracle/ethgo/abi"
@@ -53,55 +53,55 @@ func (c *blsAggSignsVerification) run(input []byte, caller types.Address, host r
 		return nil, errBLSVerifyAggSignsInputsLen
 	}
 
-	msg, ok := data["0"].([types.HashLength]byte)
-	if !ok {
-		return nil, errBLSVInvalidMsg
-	}
+	// msg, ok := data["0"].([types.HashLength]byte)
+	// if !ok {
+	// 	return nil, errBLSVInvalidMsg
+	// }
 
-	aggSig, ok := data["1"].([]byte)
-	if !ok {
-		return nil, errBLSVInvalidSign
-	}
+	// aggSig, ok := data["1"].([]byte)
+	// if !ok {
+	// 	return nil, errBLSVInvalidSign
+	// }
 
-	sig, err := bls.UnmarshalSignature(aggSig)
-	if err != nil {
-		return nil, errBLSVInvalidSign
-	}
+	// sig, err := bls.UnmarshalSignature(aggSig)
+	// if err != nil {
+	// 	return nil, errBLSVInvalidSign
+	// }
 
-	blsVerification, ok := data["2"].([]byte)
-	if !ok {
-		return nil, errBLSVInvalidPubKeys
-	}
+	// blsVerification, ok := data["2"].([]byte)
+	// if !ok {
+	// 	return nil, errBLSVInvalidPubKeys
+	// }
 
-	decoded, err := BlsVerificationABIType.Decode(blsVerification)
-	if err != nil {
-		return nil, err
-	}
+	// decoded, err := BlsVerificationABIType.Decode(blsVerification)
+	// if err != nil {
+	// 	return nil, err
+	// }
 
-	blsMap, ok := decoded.(map[string]interface{})
-	if !ok {
-		return nil, errBLSVInvalidBlsPart
-	}
+	// blsMap, ok := decoded.(map[string]interface{})
+	// if !ok {
+	// 	return nil, errBLSVInvalidBlsPart
+	// }
 
-	publicKeys, isOk := blsMap["0"].([][]byte)
-	if !isOk {
-		return nil, errBLSVInvalidPubKeysPart
-	}
+	// publicKeys, isOk := blsMap["0"].([][]byte)
+	// if !isOk {
+	// 	return nil, errBLSVInvalidPubKeysPart
+	// }
 
-	blsPubKeys := make([]*bls.PublicKey, len(publicKeys))
+	// blsPubKeys := make([]*bls.PublicKey, len(publicKeys))
 
-	for i, pk := range publicKeys {
-		blsPubKey, err := bls.UnmarshalPublicKey(pk)
-		if err != nil {
-			return nil, errBLSVInvalidPubKeys
-		}
+	// for i, pk := range publicKeys {
+	// 	blsPubKey, err := bls.UnmarshalPublicKey(pk)
+	// 	if err != nil {
+	// 		return nil, errBLSVInvalidPubKeys
+	// 	}
 
-		blsPubKeys[i] = blsPubKey
-	}
+	// 	blsPubKeys[i] = blsPubKey
+	// }
 
-	if sig.VerifyAggregated(blsPubKeys, types.Hash(msg).Bytes(), bls.DomainStateReceiver) {
-		return abiBoolTrue, nil
-	}
+	// if sig.VerifyAggregated(blsPubKeys, types.Hash(msg).Bytes(), bls.DomainStateReceiver) {
+	// 	return abiBoolTrue, nil
+	// }
 
 	return abiBoolFalse, nil
 }

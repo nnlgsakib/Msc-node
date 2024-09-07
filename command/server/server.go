@@ -243,7 +243,7 @@ func setFlags(cmd *cobra.Command) {
 // setLegacyFlags sets the legacy flags to preserve backwards compatibility
 // with running partners
 func setLegacyFlags(cmd *cobra.Command) {
-	// Legacy IBFT base timeout flag
+	// Legacy NLG-IBFT base timeout flag
 	cmd.Flags().Uint64Var(
 		&params.ibftBaseTimeoutLegacy,
 		ibftBaseTimeoutFlagLEGACY,

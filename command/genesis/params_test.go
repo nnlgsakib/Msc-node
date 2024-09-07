@@ -8,7 +8,7 @@ import (
 	"github.com/umbracle/ethgo"
 
 	"github.com/Mind-chain/mind/command"
-	"github.com/Mind-chain/mind/consensus/polybft"
+
 	"github.com/Mind-chain/mind/types"
 )
 

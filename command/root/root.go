@@ -6,11 +6,12 @@ import (
 
 	"github.com/spf13/cobra"
 
+	ibft "github.com/Mind-chain/mind/command/NLG-ibft"
 	"github.com/Mind-chain/mind/command/backup"
+
 	//"github.com/Mind-chain/mind/command/bridge"
 	"github.com/Mind-chain/mind/command/genesis"
 	"github.com/Mind-chain/mind/command/helper"
-	"github.com/Mind-chain/mind/command/ibft"
 	"github.com/Mind-chain/mind/command/license"
 	"github.com/Mind-chain/mind/command/monitor"
 	"github.com/Mind-chain/mind/command/peers"

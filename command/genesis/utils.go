@@ -1,27 +1,24 @@
 package genesis
 
 import (
-	"encoding/hex"
 	"fmt"
 	"io/ioutil"
 	"math/big"
 	"os"
-	"path/filepath"
 	"sort"
 	"strconv"
 	"strings"
 
 	"github.com/Mind-chain/mind/command"
-	"github.com/Mind-chain/mind/consensus/polybft"
-	"github.com/Mind-chain/mind/consensus/polybft/bitmap"
-	"github.com/Mind-chain/mind/consensus/polybft/validator"
-	"github.com/Mind-chain/mind/consensus/polybft/wallet"
+	//
+
+	//"github.com/docker/docker/libnetwork/bitmap"
+
+	// "github.com/Mind-chain/mind/consensus/polybft/bitmap"
+	// "github.com/Mind-chain/mind/consensus/polybft/validator"
+	// "github.com/Mind-chain/mind/consensus/polybft/wallet"
 	"github.com/Mind-chain/mind/helper/common"
-	"github.com/Mind-chain/mind/secrets"
-	"github.com/Mind-chain/mind/secrets/helper"
-	"github.com/Mind-chain/mind/secrets/local"
 	"github.com/Mind-chain/mind/types"
-	"github.com/hashicorp/go-hclog"
 )
 
 const (
@@ -124,44 +121,44 @@ func parseTrackerStartBlocks(trackerStartBlocksRaw []string) (map[types.Address]
 }
 
 // parseBurnContractInfo parses provided burn contract information and returns burn contract block and address
-func parseBurnContractInfo(burnContractInfoRaw string) (*polybft.BurnContractInfo, error) {
-	// <block>:<address>[:<burn destination address>]
-	burnContractParts := strings.Split(burnContractInfoRaw, ":")
-	if len(burnContractParts) < 2 || len(burnContractParts) > 3 {
-		return nil, fmt.Errorf("expected format: <block>:<address>[:<burn destination>]")
-	}
+// func parseBurnContractInfo(burnContractInfoRaw string) (*polybft.BurnContractInfo, error) {
+// 	// <block>:<address>[:<burn destination address>]
+// 	burnContractParts := strings.Split(burnContractInfoRaw, ":")
+// 	if len(burnContractParts) < 2 || len(burnContractParts) > 3 {
+// 		return nil, fmt.Errorf("expected format: <block>:<address>[:<burn destination>]")
+// 	}
 
-	blockRaw := burnContractParts[0]
+// 	blockRaw := burnContractParts[0]
 
-	blockNum, err := common.ParseUint64orHex(&blockRaw)
-	if err != nil {
-		return nil, fmt.Errorf("failed to parse block number %s: %w", blockRaw, err)
-	}
+// 	blockNum, err := common.ParseUint64orHex(&blockRaw)
+// 	if err != nil {
+// 		return nil, fmt.Errorf("failed to parse block number %s: %w", blockRaw, err)
+// 	}
 
-	contractAddress := burnContractParts[1]
-	if err = types.IsValidAddress(contractAddress); err != nil {
-		return nil, fmt.Errorf("failed to parse contract address %s: %w", contractAddress, err)
-	}
+// 	contractAddress := burnContractParts[1]
+// 	if err = types.IsValidAddress(contractAddress); err != nil {
+// 		return nil, fmt.Errorf("failed to parse contract address %s: %w", contractAddress, err)
+// 	}
 
-	if len(burnContractParts) == 2 {
-		return &polybft.BurnContractInfo{
-			BlockNumber:        blockNum,
-			Address:            types.StringToAddress(contractAddress),
-			DestinationAddress: types.ZeroAddress,
-		}, nil
-	}
+// 	if len(burnContractParts) == 2 {
+// 		return &polybft.BurnContractInfo{
+// 			BlockNumber:        blockNum,
+// 			Address:            types.StringToAddress(contractAddress),
+// 			DestinationAddress: types.ZeroAddress,
+// 		}, nil
+// 	}
 
-	destinationAddress := burnContractParts[2]
-	if err = types.IsValidAddress(destinationAddress); err != nil {
-		return nil, fmt.Errorf("failed to parse burn destination address %s: %w", destinationAddress, err)
-	}
+// 	destinationAddress := burnContractParts[2]
+// 	if err = types.IsValidAddress(destinationAddress); err != nil {
+// 		return nil, fmt.Errorf("failed to parse burn destination address %s: %w", destinationAddress, err)
+// 	}
 
-	return &polybft.BurnContractInfo{
-		BlockNumber:        blockNum,
-		Address:            types.StringToAddress(contractAddress),
-		DestinationAddress: types.StringToAddress(destinationAddress),
-	}, nil
-}
+// 	return &polybft.BurnContractInfo{
+// 		BlockNumber:        blockNum,
+// 		Address:            types.StringToAddress(contractAddress),
+// 		DestinationAddress: types.StringToAddress(destinationAddress),
+// 	}, nil
+// }
 
 // GetValidatorKeyFiles returns file names which has validator secrets
 func GetValidatorKeyFiles(rootDir, filePrefix string) ([]string, error) {
@@ -201,67 +198,64 @@ func GetValidatorKeyFiles(rootDir, filePrefix string) ([]string, error) {
 }
 
 // ReadValidatorsByPrefix reads validators secrets on a given root directory and with given folder prefix
-func ReadValidatorsByPrefix(dir, prefix string) ([]*validator.GenesisValidator, error) {
-	validatorKeyFiles, err := GetValidatorKeyFiles(dir, prefix)
-	if err != nil {
-		return nil, err
-	}
+//func ReadValidatorsByPrefix(dir, prefix string) error {
+// validatorKeyFiles, err := GetValidatorKeyFiles(dir, prefix)
 
-	validators := make([]*validator.GenesisValidator, len(validatorKeyFiles))
+// validators := make(len(validatorKeyFiles))
 
-	for i, file := range validatorKeyFiles {
-		path := filepath.Join(dir, file)
+// for i, file := range validatorKeyFiles {
+// 	path := filepath.Join(dir, file)
 
-		account, nodeID, err := getSecrets(path)
-		if err != nil {
-			return nil, err
-		}
+// 	account, nodeID, err := getSecrets(path)
+// 	if err != nil {
+// 		return nil, err
+// 	}
 
-		validators[i] = &validator.GenesisValidator{
-			Address:   types.Address(account.Ecdsa.Address()),
-			BlsKey:    hex.EncodeToString(account.Bls.PublicKey().Marshal()),
-			MultiAddr: fmt.Sprintf("/ip4/%s/tcp/%d/p2p/%s", "127.0.0.1", bootnodePortStart+int64(i), nodeID),
-			Stake:     big.NewInt(0),
-		}
-	}
+// 	validators[i] = &validator.GenesisValidator{
+// 		Address:   types.Address(account.Ecdsa.Address()),
+// 		BlsKey:    hex.EncodeToString(account.Bls.PublicKey().Marshal()),
+// 		MultiAddr: fmt.Sprintf("/ip4/%s/tcp/%d/p2p/%s", "127.0.0.1", bootnodePortStart+int64(i), nodeID),
+// 		Stake:     big.NewInt(0),
+// 	}
+// }
 
-	return validators, nil
-}
+// 	return validators, nil
+//}
 
-func getSecrets(directory string) (*wallet.Account, string, error) {
-	baseConfig := &secrets.SecretsManagerParams{
-		Logger: hclog.NewNullLogger(),
-		Extra: map[string]interface{}{
-			secrets.Path: directory,
-		},
-	}
+//func getSecrets(directory string) (string, error) {
+// baseConfig := &secrets.SecretsManagerParams{
+// 	Logger: hclog.NewNullLogger(),
+// 	Extra: map[string]interface{}{
+// 		secrets.Path: directory,
+// 	},
+// }
 
-	localManager, err := local.SecretsManagerFactory(nil, baseConfig)
-	if err != nil {
-		return nil, "", fmt.Errorf("unable to instantiate local secrets manager, %w", err)
-	}
+// localManager, err := local.SecretsManagerFactory(nil, baseConfig)
+// if err != nil {
+// 	return nil, "", fmt.Errorf("unable to instantiate local secrets manager, %w", err)
+// }
 
-	nodeID, err := helper.LoadNodeID(localManager)
-	if err != nil {
-		return nil, "", err
-	}
+// nodeID, err := helper.LoadNodeID(localManager)
+// if err != nil {
+// 	return nil, "", err
+// }
 
-	account, err := wallet.NewAccountFromSecret(localManager)
-	if err != nil {
-		return nil, "", err
-	}
+// account, err := wallet.NewAccountFromSecret(localManager)
+// if err != nil {
+// 	return nil, "", err
+// }
 
-	return account, nodeID, err
-}
+//return account, nodeID, err
+//}
 
 // GenerateExtraDataPolyBft populates Extra with specific fields required for polybft consensus protocol
-func GenerateExtraDataPolyBft(validators []*validator.ValidatorMetadata) ([]byte, error) {
-	delta := &validator.ValidatorSetDelta{
-		Added:   validators,
-		Removed: bitmap.Bitmap{},
-	}
+// func GenerateExtraDataPolyBft(validators []*validator.ValidatorMetadata) ([]byte, error) {
+// 	delta := &validator.ValidatorSetDelta{
+// 		Added:   validators,
+// 		Removed: bitmap.Bitmap{},
+// 	}
 
-	extra := polybft.Extra{Validators: delta, Checkpoint: &polybft.CheckpointData{}}
+// 	extra := polybft.Extra{Validators: delta, Checkpoint: &polybft.CheckpointData{}}
 
-	return extra.MarshalRLPTo(nil), nil
-}
+// 	return extra.MarshalRLPTo(nil), nil
+// }

@@ -5,7 +5,7 @@ import (
 	"math/big"
 	"path/filepath"
 
-	"github.com/Mind-chain/mind/consensus/ibft"
+	ibft "github.com/Mind-chain/mind/consensus/NLG-ibft"
 	"github.com/Mind-chain/mind/crypto"
 	"github.com/Mind-chain/mind/types"
 	"github.com/Mind-chain/mind/validators"
@@ -37,8 +37,8 @@ type TestServerConfig struct {
 	GRPCPort                int                      // The GRPC endpoint port
 	LibP2PPort              int                      // The Libp2p endpoint port
 	RootDir                 string                   // The root directory for test environment
-	IBFTDirPrefix           string                   // The prefix of data directory for IBFT
-	IBFTDir                 string                   // The name of data directory for IBFT
+	IBFTDirPrefix           string                   // The prefix of data directory for NLG-IBFT
+	IBFTDir                 string                   // The name of data directory for NLG-IBFT
 	PremineAccts            []*SrvAccount            // Accounts with existing balances (genesis accounts)
 	GenesisValidatorBalance *big.Int                 // Genesis the balance for the validators
 	DevStakers              []types.Address          // List of initial staking addresses for the staking SC
@@ -47,7 +47,7 @@ type TestServerConfig struct {
 	Bootnodes               []string                 // Bootnode Addresses
 	PriceLimit              *uint64                  // Minimum gas price limit to enforce for acceptance into the pool
 	DevInterval             int                      // Dev consensus update interval [s]
-	EpochSize               uint64                   // The epoch size in blocks for the IBFT layer
+	EpochSize               uint64                   // The epoch size in blocks for the NLG-IBFT layer
 	BlockGasLimit           uint64                   // Block gas limit
 	BlockGasTarget          uint64                   // Gas target for new blocks
 	BaseFee                 uint64                   // Initial base fee
@@ -55,12 +55,12 @@ type TestServerConfig struct {
 	Name                    string                   // Name of the server
 	SaveLogs                bool                     // Flag specifying if logs are saved
 	LogsDir                 string                   // Directory where logs are saved
-	IsPos                   bool                     // Specifies the mechanism used for IBFT (PoA / PoS)
+	IsPos                   bool                     // Specifies the mechanism used for NLG-IBFT (PoA / PoS)
 	Signer                  crypto.TxSigner          // Signer used for transactions
 	MinValidatorCount       uint64                   // Min validator count
 	MaxValidatorCount       uint64                   // Max validator count
 	BlockTime               uint64                   // Minimum block generation time (in s)
-	IBFTBaseTimeout         uint64                   // Base Timeout in seconds for IBFT
+	IBFTBaseTimeout         uint64                   // Base Timeout in seconds for NLG-IBFT
 	PredeployParams         *PredeployParams
 	BurnContracts           map[uint64]types.Address
 }
@@ -152,17 +152,17 @@ func (t *TestServerConfig) SetDevStakingAddresses(stakingAddresses []types.Addre
 	t.DevStakers = stakingAddresses
 }
 
-// SetIBFTPoS sets the flag indicating the IBFT mechanism
+// SetIBFTPoS sets the flag indicating the NLG-IBFT mechanism
 func (t *TestServerConfig) SetIBFTPoS(value bool) {
 	t.IsPos = value
 }
 
-// SetIBFTDirPrefix callback sets prefix of IBFT directories
+// SetIBFTDirPrefix callback sets prefix of NLG-IBFT directories
 func (t *TestServerConfig) SetIBFTDirPrefix(ibftDirPrefix string) {
 	t.IBFTDirPrefix = ibftDirPrefix
 }
 
-// SetIBFTDir callback sets the name of data directory for IBFT
+// SetIBFTDir callback sets the name of data directory for NLG-IBFT
 func (t *TestServerConfig) SetIBFTDir(ibftDir string) {
 	t.IBFTDir = ibftDir
 }

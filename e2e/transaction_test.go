@@ -356,7 +356,7 @@ func addStressTxnsWithHashes(
 	return txHashes
 }
 
-// Test scenario (IBFT):
+// Test scenario (NLG-IBFT):
 // Deploy the StressTest smart contract and send ~50 transactions
 // that modify it's state, and make sure that all
 // transactions were correctly executed

@@ -32,13 +32,13 @@ import (
 
 	"github.com/Mind-chain/mind/chain"
 	"github.com/Mind-chain/mind/command"
+	ibftSwitch "github.com/Mind-chain/mind/command/NLG-ibft/switch"
 	"github.com/Mind-chain/mind/command/genesis"
 	"github.com/Mind-chain/mind/command/genesis/predeploy"
-	ibftSwitch "github.com/Mind-chain/mind/command/ibft/switch"
 	initCmd "github.com/Mind-chain/mind/command/secrets/init"
 	"github.com/Mind-chain/mind/command/server"
-	"github.com/Mind-chain/mind/consensus/ibft/fork"
-	ibftOp "github.com/Mind-chain/mind/consensus/ibft/proto"
+	"github.com/Mind-chain/mind/consensus/NLG-ibft/fork"
+	ibftOp "github.com/Mind-chain/mind/consensus/NLG-ibft/proto"
 	"github.com/Mind-chain/mind/crypto"
 	"github.com/Mind-chain/mind/helper/common"
 	stakingHelper "github.com/Mind-chain/mind/helper/staking"
@@ -220,7 +220,7 @@ func (t *TestServer) SecretsInit() (*InitIBFTResult, error) {
 		return nil, factoryErr
 	}
 
-	// Generate the IBFT validator private key
+	// Generate the NLG-IBFT validator private key
 	validatorKey, validatorKeyEncoded, keyErr := crypto.GenerateAndEncodeECDSAPrivateKey()
 	if keyErr != nil {
 		return nil, keyErr
@@ -290,12 +290,12 @@ func (t *TestServer) GenerateGenesis() error {
 	case ConsensusIBFT:
 		args = append(
 			args,
-			"--consensus", "ibft",
+			"--consensus", "nibft",
 			"--ibft-validator-type", string(t.Config.ValidatorType),
 		)
 
 		if t.Config.IBFTDirPrefix == "" {
-			return errors.New("prefix of IBFT directory is not set")
+			return errors.New("prefix of NLG-IBFT directory is not set")
 		}
 
 		args = append(args, "--ibft-validators-prefix-path", t.Config.IBFTDirPrefix)
