@@ -27,7 +27,7 @@ type ForkManagerInitialParamsFactory func(config *chain.Chain) (*forkmanager.For
 
 const (
 	DevConsensus  ConsensusType = "dev"
-	IBFTConsensus ConsensusType = "nibft"
+	IBFTConsensus ConsensusType = "ibft"
 	//PolyBFTConsensus ConsensusType = consensusPolyBFT.ConsensusName
 	DummyConsensus ConsensusType = "dummy"
 )

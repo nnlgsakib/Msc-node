@@ -290,7 +290,7 @@ func (t *TestServer) GenerateGenesis() error {
 	case ConsensusIBFT:
 		args = append(
 			args,
-			"--consensus", "nibft",
+			"--consensus", "ibft",
 			"--ibft-validator-type", string(t.Config.ValidatorType),
 		)
 

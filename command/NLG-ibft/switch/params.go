@@ -370,7 +370,7 @@ func appendIBFTForks(
 	maxValidatorCount *uint64,
 	minValidatorCount *uint64,
 ) error {
-	ibftConfig, ok := cc.Params.Engine["nibft"].(map[string]interface{})
+	ibftConfig, ok := cc.Params.Engine["ibft"].(map[string]interface{})
 	if !ok {
 		return ErrIBFTConfigNotFound
 	}
@@ -428,7 +428,7 @@ func appendIBFTForks(
 	// remove leftover config
 	delete(ibftConfig, "type")
 
-	cc.Params.Engine["nibft"] = ibftConfig
+	cc.Params.Engine["ibft"] = ibftConfig
 
 	return nil
 }
