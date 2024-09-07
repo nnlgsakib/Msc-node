@@ -3,10 +3,11 @@ package server
 import (
 	"github.com/Mind-chain/mind/chain"
 	"github.com/Mind-chain/mind/consensus"
+	consensusIBFT "github.com/Mind-chain/mind/consensus/NLG-ibft"
 	consensusDev "github.com/Mind-chain/mind/consensus/dev"
 	consensusDummy "github.com/Mind-chain/mind/consensus/dummy"
-	consensusIBFT "github.com/Mind-chain/mind/consensus/ibft"
-	consensusPolyBFT "github.com/Mind-chain/mind/consensus/polybft"
+
+	//consensusPolyBFT
 	"github.com/Mind-chain/mind/forkmanager"
 	"github.com/Mind-chain/mind/secrets"
 	"github.com/Mind-chain/mind/secrets/awsssm"
@@ -25,17 +26,17 @@ type ForkManagerFactory func(forks *chain.Forks) error
 type ForkManagerInitialParamsFactory func(config *chain.Chain) (*forkmanager.ForkParams, error)
 
 const (
-	DevConsensus     ConsensusType = "dev"
-	IBFTConsensus    ConsensusType = "ibft"
-	PolyBFTConsensus ConsensusType = consensusPolyBFT.ConsensusName
-	DummyConsensus   ConsensusType = "dummy"
+	DevConsensus  ConsensusType = "dev"
+	IBFTConsensus ConsensusType = "nibft"
+	//PolyBFTConsensus ConsensusType = consensusPolyBFT.ConsensusName
+	DummyConsensus ConsensusType = "dummy"
 )
 
 var consensusBackends = map[ConsensusType]consensus.Factory{
-	DevConsensus:     consensusDev.Factory,
-	IBFTConsensus:    consensusIBFT.Factory,
-	PolyBFTConsensus: consensusPolyBFT.Factory,
-	DummyConsensus:   consensusDummy.Factory,
+	DevConsensus:  consensusDev.Factory,
+	IBFTConsensus: consensusIBFT.Factory,
+	//PolyBFTConsensus: consensusPolyBFT.Factory,
+	DummyConsensus: consensusDummy.Factory,
 }
 
 // secretsManagerBackends defines the SecretManager factories for different
@@ -47,16 +48,10 @@ var secretsManagerBackends = map[secrets.SecretsManagerType]secrets.SecretsManag
 	secrets.GCPSSM:         gcpssm.SecretsManagerFactory,
 }
 
-var genesisCreationFactory = map[ConsensusType]GenesisFactoryHook{
-	PolyBFTConsensus: consensusPolyBFT.GenesisPostHookFactory,
-}
-
-var forkManagerFactory = map[ConsensusType]ForkManagerFactory{
-	PolyBFTConsensus: consensusPolyBFT.ForkManagerFactory,
-}
+var genesisCreationFactory = map[ConsensusType]GenesisFactoryHook{}
 
 var forkManagerInitialParamsFactory = map[ConsensusType]ForkManagerInitialParamsFactory{
-	PolyBFTConsensus: consensusPolyBFT.ForkManagerInitialParamsFactory,
+	// PolyBFTConsensus: consensusPolyBFT.ForkManagerInitialParamsFactory,
 }
 
 func ConsensusSupported(value string) bool {

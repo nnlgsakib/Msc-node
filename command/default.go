@@ -11,7 +11,7 @@ const (
 	DefaultGenesisFileName  = "genesis.json"
 	DefaultChainName        = "mind-smart-chain"
 	DefaultChainID          = 9996
-	DefaultConsensus        = server.PolyBFTConsensus
+	DefaultConsensus        = server.IBFTConsensus
 	DefaultGenesisGasUsed   = 458752  // 0x70000
 	DefaultGenesisGasLimit  = 5242880 // 0x500000
 	DefaultGenesisBaseFeeEM = chain.GenesisBaseFeeEM

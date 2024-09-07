@@ -7,8 +7,8 @@ var (
 	// Embedded by --ldflags on build time
 	// Versioning should follow the SemVer guidelines
 	// https://semver.org/
-	Version   = "1.0.10"
-	Branch    = "EIP2929"
-	BuildTime = "8/22/2024"
+	Version   = "1.0.11" // Updated to the next patch version
+	Branch    = "mindchain_x_NLG-BFT"
+	BuildTime = "9/7/2024"
 	//Commit    string
 )

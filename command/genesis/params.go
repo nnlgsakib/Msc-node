@@ -3,20 +3,17 @@ package genesis
 import (
 	"errors"
 	"fmt"
-	"math"
 	"math/big"
-	"os"
-	"strconv"
-	"strings"
 	"time"
 
 	"github.com/Mind-chain/mind/chain"
 	"github.com/Mind-chain/mind/command"
 	"github.com/Mind-chain/mind/command/helper"
-	"github.com/Mind-chain/mind/consensus/ibft"
-	"github.com/Mind-chain/mind/consensus/ibft/fork"
-	"github.com/Mind-chain/mind/consensus/ibft/signer"
-	"github.com/Mind-chain/mind/consensus/polybft"
+	ibft "github.com/Mind-chain/mind/consensus/NLG-ibft"
+	"github.com/Mind-chain/mind/consensus/NLG-ibft/fork"
+	"github.com/Mind-chain/mind/consensus/NLG-ibft/signer"
+
+	//
 	"github.com/Mind-chain/mind/contracts/staking"
 	stakingHelper "github.com/Mind-chain/mind/helper/staking"
 	"github.com/Mind-chain/mind/server"
@@ -124,7 +121,7 @@ type genesisParams struct {
 	accessListsOwner                 string
 
 	nativeTokenConfigRaw string
-	nativeTokenConfig    *polybft.TokenConfig
+	//nativeTokenConfig    *polybft.TokenConfig
 
 	premineInfos []*premineInfo
 
@@ -150,23 +147,23 @@ func (p *genesisParams) validateFlags() error {
 		return err
 	}
 
-	if p.isPolyBFTConsensus() {
-		if err := p.extractNativeTokenMetadata(); err != nil {
-			return err
-		}
+	// if p.isPolyBFTConsensus() {
+	// 	if err := p.extractNativeTokenMetadata(); err != nil {
+	// 		return err
+	// 	}
 
-		if err := p.validateBurnContract(); err != nil {
-			return err
-		}
+	// 	if err := p.validateBurnContract(); err != nil {
+	// 		return err
+	// 	}
 
-		if err := p.validateRewardWallet(); err != nil {
-			return err
-		}
+	// 	if err := p.validateRewardWallet(); err != nil {
+	// 		return err
+	// 	}
 
-		if err := p.validatePremineInfo(); err != nil {
-			return err
-		}
-	}
+	// 	if err := p.validatePremineInfo(); err != nil {
+	// 		return err
+	// 	}
+	// }
 
 	// Check if the genesis file already exists
 	if generateError := verifyGenesisExistence(p.genesisPath); generateError != nil {
@@ -174,19 +171,19 @@ func (p *genesisParams) validateFlags() error {
 	}
 
 	// Check that the epoch size is correct
-	if p.epochSize < 2 && (p.isIBFTConsensus() || p.isPolyBFTConsensus()) {
-		// Epoch size must be greater than 1, so new transactions have a chance to be added to a block.
-		// Otherwise, every block would be an endblock (meaning it will not have any transactions).
-		// Check is placed here to avoid additional parsing if epochSize < 2
-		return errInvalidEpochSize
-	}
+	// if p.epochSize < 2 && (p.isIBFTConsensus() || p.isPolyBFTConsensus()) {
+	// 	// Epoch size must be greater than 1, so new transactions have a chance to be added to a block.
+	// 	// Otherwise, every block would be an endblock (meaning it will not have any transactions).
+	// 	// Check is placed here to avoid additional parsing if epochSize < 2
+	// 	return errInvalidEpochSize
+	// }
 
-	// Validate validatorsPath only if validators information were not provided via CLI flag
-	if len(p.validators) == 0 {
-		if _, err := os.Stat(p.validatorsPath); err != nil {
-			return fmt.Errorf("invalid validators path ('%s') provided. Error: %w", p.validatorsPath, err)
-		}
-	}
+	// // Validate validatorsPath only if validators information were not provided via CLI flag
+	// if len(p.validators) == 0 {
+	// 	if _, err := os.Stat(p.validatorsPath); err != nil {
+	// 		return fmt.Errorf("invalid validators path ('%s') provided. Error: %w", p.validatorsPath, err)
+	// 	}
+	// }
 
 	// Validate min and max validators number
 	return command.ValidateMinMaxValidatorsNumber(p.minNumValidators, p.maxNumValidators)
@@ -196,9 +193,9 @@ func (p *genesisParams) isIBFTConsensus() bool {
 	return server.ConsensusType(p.consensusRaw) == server.IBFTConsensus
 }
 
-func (p *genesisParams) isPolyBFTConsensus() bool {
-	return server.ConsensusType(p.consensusRaw) == server.PolyBFTConsensus
-}
+// func (p *genesisParams) isPolyBFTConsensus() bool {
+// 	// return server.ConsensusType(p.consensusRaw) == server.PolyBFTConsensus
+// }
 
 func (p *genesisParams) areValidatorsSetManually() bool {
 	return len(p.ibftValidatorsRaw) != 0
@@ -221,9 +218,9 @@ func (p *genesisParams) getRequiredFlags() []string {
 func (p *genesisParams) initRawParams() error {
 	p.consensus = server.ConsensusType(p.consensusRaw)
 
-	if p.consensus == server.PolyBFTConsensus {
-		return nil
-	}
+	// if p.consensus == server.PolyBFTConsensus {
+	// 	return nil
+	// }
 
 	if err := p.initIBFTValidatorType(); err != nil {
 		return err
@@ -411,13 +408,13 @@ func (p *genesisParams) initGenesisConfig() error {
 		chainConfig.Genesis.BaseFeeEM = command.DefaultGenesisBaseFeeEM
 		chainConfig.Params.BurnContract = make(map[uint64]types.Address, 1)
 
-		burnContractInfo, err := parseBurnContractInfo(p.burnContract)
-		if err != nil {
-			return err
-		}
+		// burnContractInfo, err := parseBurnContractInfo(p.burnContract)
+		// if err != nil {
+		// 	return err
+		// }
 
-		chainConfig.Params.BurnContract[burnContractInfo.BlockNumber] = burnContractInfo.Address
-		chainConfig.Params.BurnContractDestinationAddress = burnContractInfo.DestinationAddress
+		// chainConfig.Params.BurnContract[burnContractInfo.BlockNumber] = burnContractInfo.Address
+		// chainConfig.Params.BurnContractDestinationAddress = burnContractInfo.DestinationAddress
 	}
 
 	// Predeploy staking smart contract if needed
@@ -442,7 +439,7 @@ func (p *genesisParams) initGenesisConfig() error {
 }
 
 func (p *genesisParams) shouldPredeployStakingSC() bool {
-	// If the consensus selected is IBFT / Dev and the mechanism is Proof of Stake,
+	// If the consensus selected is NLG-IBFT / Dev and the mechanism is Proof of Stake,
 	// deploy the Staking SC
 	return p.isPos && (p.consensus == server.IBFTConsensus || p.consensus == server.DevConsensus)
 }
@@ -515,26 +512,26 @@ func (p *genesisParams) validatePremineInfo() error {
 // validateBurnContract validates burn contract. If native token is mintable,
 // burn contract flag must not be set. If native token is non mintable only one burn contract
 // can be set and the specified address will be used to predeploy default EIP1559 burn contract.
-func (p *genesisParams) validateBurnContract() error {
-	if p.isBurnContractEnabled() {
-		burnContractInfo, err := parseBurnContractInfo(p.burnContract)
-		if err != nil {
-			return fmt.Errorf("invalid burn contract info provided: %w", err)
-		}
+// func (p *genesisParams) validateBurnContract() error {
+// 	if p.isBurnContractEnabled() {
+// 		burnContractInfo, err := parseBurnContractInfo(p.burnContract)
+// 		if err != nil {
+// 			return fmt.Errorf("invalid burn contract info provided: %w", err)
+// 		}
 
-		if p.nativeTokenConfig.IsMintable {
-			if burnContractInfo.Address != types.ZeroAddress {
-				return errors.New("only zero address is allowed as burn destination for mintable native token")
-			}
-		} else {
-			if burnContractInfo.Address == types.ZeroAddress {
-				return errors.New("it is not allowed to deploy burn contract to 0x0 address")
-			}
-		}
-	}
+// 		if p.nativeTokenConfig.IsMintable {
+// 			if burnContractInfo.Address != types.ZeroAddress {
+// 				return errors.New("only zero address is allowed as burn destination for mintable native token")
+// 			}
+// 		} else {
+// 			if burnContractInfo.Address == types.ZeroAddress {
+// 				return errors.New("it is not allowed to deploy burn contract to 0x0 address")
+// 			}
+// 		}
+// 	}
 
-	return nil
-}
+// 	return nil
+// }
 
 // isBurnContractEnabled returns true in case burn contract info is provided
 func (p *genesisParams) isBurnContractEnabled() bool {
@@ -542,69 +539,69 @@ func (p *genesisParams) isBurnContractEnabled() bool {
 }
 
 // extractNativeTokenMetadata parses provided native token metadata (such as name, symbol and decimals count)
-func (p *genesisParams) extractNativeTokenMetadata() error {
-	if p.nativeTokenConfigRaw == "" {
-		p.nativeTokenConfig = &polybft.TokenConfig{
-			Name:       defaultNativeTokenName,
-			Symbol:     defaultNativeTokenSymbol,
-			Decimals:   defaultNativeTokenDecimals,
-			IsMintable: false,
-			Owner:      types.ZeroAddress,
-		}
+// func (p *genesisParams) extractNativeTokenMetadata() error {
+// 	if p.nativeTokenConfigRaw == "" {
+// 		p.nativeTokenConfig = &polybft.TokenConfig{
+// 			Name:       defaultNativeTokenName,
+// 			Symbol:     defaultNativeTokenSymbol,
+// 			Decimals:   defaultNativeTokenDecimals,
+// 			IsMintable: false,
+// 			Owner:      types.ZeroAddress,
+// 		}
 
-		return nil
-	}
+// 		return nil
+// 	}
 
-	params := strings.Split(p.nativeTokenConfigRaw, ":")
-	if len(params) < minNativeTokenParamsNumber {
-		return errInvalidTokenParams
-	}
+// 	params := strings.Split(p.nativeTokenConfigRaw, ":")
+// 	if len(params) < minNativeTokenParamsNumber {
+// 		return errInvalidTokenParams
+// 	}
 
-	// name
-	name := strings.TrimSpace(params[0])
-	if name == "" {
-		return errInvalidTokenParams
-	}
+// 	// name
+// 	name := strings.TrimSpace(params[0])
+// 	if name == "" {
+// 		return errInvalidTokenParams
+// 	}
 
-	// symbol
-	symbol := strings.TrimSpace(params[1])
-	if symbol == "" {
-		return errInvalidTokenParams
-	}
+// 	// symbol
+// 	symbol := strings.TrimSpace(params[1])
+// 	if symbol == "" {
+// 		return errInvalidTokenParams
+// 	}
 
-	// decimals
-	decimals, err := strconv.ParseUint(strings.TrimSpace(params[2]), 10, 8)
-	if err != nil || decimals > math.MaxUint8 {
-		return errInvalidTokenParams
-	}
+// 	// decimals
+// 	decimals, err := strconv.ParseUint(strings.TrimSpace(params[2]), 10, 8)
+// 	if err != nil || decimals > math.MaxUint8 {
+// 		return errInvalidTokenParams
+// 	}
 
-	// is mintable native token used
-	isMintable, err := strconv.ParseBool(strings.TrimSpace(params[3]))
-	if err != nil {
-		return errInvalidTokenParams
-	}
+// 	// is mintable native token used
+// 	isMintable, err := strconv.ParseBool(strings.TrimSpace(params[3]))
+// 	if err != nil {
+// 		return errInvalidTokenParams
+// 	}
 
-	// in case it is mintable native token, it is expected to have 5 parameters provided
-	if isMintable && len(params) != minNativeTokenParamsNumber+1 {
-		return errInvalidTokenParams
-	}
+// 	// in case it is mintable native token, it is expected to have 5 parameters provided
+// 	if isMintable && len(params) != minNativeTokenParamsNumber+1 {
+// 		return errInvalidTokenParams
+// 	}
 
-	// owner address
-	owner := types.ZeroAddress
-	if isMintable {
-		owner = types.StringToAddress(strings.TrimSpace(params[4]))
-	}
+// 	// owner address
+// 	owner := types.ZeroAddress
+// 	if isMintable {
+// 		owner = types.StringToAddress(strings.TrimSpace(params[4]))
+// 	}
 
-	p.nativeTokenConfig = &polybft.TokenConfig{
-		Name:       name,
-		Symbol:     symbol,
-		Decimals:   uint8(decimals),
-		IsMintable: isMintable,
-		Owner:      owner,
-	}
+// 	p.nativeTokenConfig = &polybft.TokenConfig{
+// 		Name:       name,
+// 		Symbol:     symbol,
+// 		Decimals:   uint8(decimals),
+// 		IsMintable: isMintable,
+// 		Owner:      owner,
+// 	}
 
-	return nil
-}
+// 	return nil
+// }
 
 func (p *genesisParams) getResult() command.CommandResult {
 	return &GenesisResult{

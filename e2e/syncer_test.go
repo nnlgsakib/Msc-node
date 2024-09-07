@@ -19,7 +19,7 @@ func TestClusterBlockSync(t *testing.T) {
 	runTest := func(t *testing.T, validatorType validators.ValidatorType) {
 		t.Helper()
 
-		// Start IBFT cluster (4 Validator + 2 Non-Validator)
+		// Start NLG-IBFT cluster (4 Validator + 2 Non-Validator)
 		ibftManager := framework.NewIBFTServersManager(
 			t,
 			IBFTMinNodes+numNonValidators,

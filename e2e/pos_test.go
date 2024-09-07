@@ -15,7 +15,7 @@ import (
 	"github.com/umbracle/ethgo/jsonrpc"
 
 	"github.com/Mind-chain/mind/chain"
-	ibftOp "github.com/Mind-chain/mind/consensus/ibft/proto"
+	ibftOp "github.com/Mind-chain/mind/consensus/NLG-ibft/proto"
 	"github.com/Mind-chain/mind/contracts/staking"
 	"github.com/Mind-chain/mind/crypto"
 	"github.com/Mind-chain/mind/e2e/framework"

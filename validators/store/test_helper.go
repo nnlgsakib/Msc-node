@@ -1,7 +1,7 @@
 package store
 
 import (
-	"github.com/Mind-chain/mind/consensus/ibft/signer"
+	"github.com/Mind-chain/mind/consensus/NLG-ibft/signer"
 	"github.com/Mind-chain/mind/types"
 )
 

@@ -244,7 +244,7 @@ case "$2" in
 *)
   echo "Running $1 environment from local binary..."
   # Initialize ibft or polybft consensus
-  if [ "$1" == "ibft" ]; then
+  if [ "$1" == "nibft" ]; then
     # Initialize ibft consensus
     initIbftConsensus
     # Create genesis file and start the server from binary

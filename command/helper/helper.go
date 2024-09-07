@@ -11,7 +11,7 @@ import (
 
 	"github.com/Mind-chain/mind/chain"
 	"github.com/Mind-chain/mind/command"
-	ibftOp "github.com/Mind-chain/mind/consensus/ibft/proto"
+	ibftOp "github.com/Mind-chain/mind/consensus/NLG-ibft/proto"
 	"github.com/Mind-chain/mind/helper/common"
 	"github.com/Mind-chain/mind/server"
 	"github.com/Mind-chain/mind/server/proto"
@@ -124,7 +124,7 @@ func GetSystemClientConnection(address string) (
 	return proto.NewSystemClient(conn), nil
 }
 
-// GetIBFTOperatorClientConnection returns the IBFT operator client connection
+// GetIBFTOperatorClientConnection returns the NLG-IBFT operator client connection
 func GetIBFTOperatorClientConnection(address string) (
 	ibftOp.IbftOperatorClient,
 	error,
