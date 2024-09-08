@@ -121,7 +121,7 @@ func Factory(params *consensus.Params) (consensus.Consensus, error) {
 		quorumSizeBlockNum = uint64(readBlockNum)
 	}
 
-	logger := params.Logger.Named("nibft")
+	logger := params.Logger.Named("ibft")
 
 	forkManager, err := fork.NewForkManager(
 		logger,

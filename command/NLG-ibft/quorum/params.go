@@ -86,14 +86,14 @@ func appendIBFTQuorum(
 	cc *chain.Chain,
 	from uint64,
 ) error {
-	ibftConfig, ok := cc.Params.Engine["nibft"].(map[string]interface{})
+	ibftConfig, ok := cc.Params.Engine["ibft"].(map[string]interface{})
 	if !ok {
 		return errors.New(`"nibft" setting doesn't exist in "engine" of genesis.json'`)
 	}
 
 	ibftConfig["quorumSizeBlockNum"] = from
 
-	cc.Params.Engine["nibft"] = ibftConfig
+	cc.Params.Engine["ibft"] = ibftConfig
 
 	return nil
 }
