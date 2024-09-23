@@ -6,8 +6,8 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/0xPolygon/go-ibft/messages"
-	"github.com/0xPolygon/go-ibft/messages/proto"
+	"github.com/nnlgsakib/nlg-bft/messages"
+	"github.com/nnlgsakib/nlg-bft/messages/proto"
 	"github.com/Mind-chain/mind/consensus"
 	"github.com/Mind-chain/mind/consensus/NLG-ibft/signer"
 	"github.com/Mind-chain/mind/helper/hex"

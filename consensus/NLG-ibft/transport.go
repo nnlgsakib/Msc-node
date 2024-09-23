@@ -1,7 +1,7 @@
 package ibft
 
 import (
-	"github.com/0xPolygon/go-ibft/messages/proto"
+	"github.com/nnlgsakib/nlg-bft/messages/proto"
 	"github.com/Mind-chain/mind/network"
 	"github.com/Mind-chain/mind/types"
 	"github.com/libp2p/go-libp2p/core/peer"
