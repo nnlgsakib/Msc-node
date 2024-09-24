@@ -5,8 +5,8 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 
-	"github.com/0xPolygon/go-ibft/messages"
-	protoIBFT "github.com/0xPolygon/go-ibft/messages/proto"
+	"github.com/nnlgsakib/nlg-bft/messages"
+	protoIBFT "github.com/nnlgsakib/nlg-bft/messages/proto"
 	"github.com/Mind-chain/mind/consensus/NLG-ibft/signer"
 	"github.com/Mind-chain/mind/crypto"
 	"github.com/Mind-chain/mind/types"

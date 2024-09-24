@@ -58,7 +58,7 @@ require (
 )
 
 require (
-	github.com/0xPolygon/go-ibft v0.4.1-0.20230717081138-628065cf23b6
+	github.com/0xPolygon/go-ibft v0.4.0
 	github.com/docker/go-connections v0.4.0 // indirect
 	go.etcd.io/bbolt v1.3.7
 )
@@ -86,6 +86,7 @@ require (
 	github.com/hashicorp/golang-lru/v2 v2.0.2 // indirect
 	github.com/ipfs/boxo v0.8.1 // indirect
 	github.com/libp2p/go-yamux/v4 v4.0.0 // indirect
+	github.com/nnlgsakib/nlg-bft v0.0.0-20240923024240-10525b4abf39 // indirect
 	github.com/onsi/ginkgo/v2 v2.9.2 // indirect
 	github.com/outcaste-io/ristretto v0.2.1 // indirect
 	github.com/quic-go/qpack v0.4.0 // indirect
