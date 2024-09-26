@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Usage: setup_bootnode_dns.sh --domain <your-domain> --ip <your-ip> --p2p-addr <your-peer-id>
-# Example: sudo ./setup_bootnode_dns.sh --domain node1.yourdomain.com --ip 37.60.239.84 --p2p-addr 16Uiu2HAmUkuKgbDRaZzjE8SzNp3ptZcJCD8pFV2XwkZ9Tc2jpxaZ
+# Usage: setup-dns.sh --domain <your-domain> --ip <your-ip> --p2p-addr <your-peer-id> [--port <custom-port>]
+# Example: sudo ./setup-dns.sh --domain node1.yourdomain.com --ip 37.60.239.84 --p2p-addr 16Uiu2HAmUkuKgbDRaZzjE8SzNp3ptZcJCD8pFV2XwkZ9Tc2jpxaZ --port 20001
+
+# Default values
+PORT=10001
 
 # Parse arguments
 for arg in "$@"
@@ -19,6 +22,10 @@ do
         P2P_ADDR="${arg#*=}"
         shift
         ;;
+        --port=*)
+        PORT="${arg#*=}"
+        shift
+        ;;
         *)
         echo "Unknown argument: $arg"
         exit 1
@@ -26,8 +33,9 @@ do
     esac
 done
 
+# Check for required arguments
 if [ -z "$DOMAIN" ] || [ -z "$IP" ] || [ -z "$P2P_ADDR" ]; then
-    echo "Usage: $0 --domain=<your-domain> --ip=<your-ip> --p2p-addr=<your-peer-id>"
+    echo "Usage: $0 --domain=<your-domain> --ip=<your-ip> --p2p-addr=<your-peer-id> [--port=<custom-port>]"
     exit 1
 fi
 
@@ -54,7 +62,7 @@ server {
     ssl_ciphers "ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384";
 
     location / {
-        proxy_pass http://$IP:10001;  # Forward to internal port
+        proxy_pass http://$IP:$PORT;  # Forward to internal port (default or custom)
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;
         proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
@@ -89,7 +97,7 @@ echo "Adding cron job for SSL renewal..."
 (crontab -l 2>/dev/null; echo "0 3 * * * certbot renew --quiet && systemctl reload nginx") | crontab -
 
 # Step 6: Output the bootnode configuration
-echo "Here is your bootnode configuration:"
+echo "Here is your bootnode configuration for Msc-node:"
 echo "\"/dns4/$DOMAIN/p2p/$P2P_ADDR\""
 
-echo "Setup complete! Your Polygon Edge node is now accessible via DNS with SSL and hidden ports."
+echo "Setup complete! Your Msc-node is now accessible via DNS with SSL and hidden ports."
