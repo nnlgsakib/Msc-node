@@ -9,6 +9,6 @@ var (
 	// https://semver.org/
 	Version   = "1.0.11" // Updated to the next patch version
 	Branch    = "mindchain_x_NLG-BFT"
-	BuildTime = "9/7/2024"
+	BuildTime = "9/27/2024"
 	//Commit    string
 )
