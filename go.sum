@@ -508,6 +508,8 @@ github.com/neelance/astrewrite v0.0.0-20160511093645-99348263ae86/go.mod h1:kHJE
 github.com/neelance/sourcemap v0.0.0-20151028013722-8c68805598ab/go.mod h1:Qr6/a/Q4r9LP1IltGz7tA7iOK1WonHEYhu1HRBA7ZiM=
 github.com/nnlgsakib/nlg-bft v1.0.2 h1:Q6igac5AT/FzEf9F3EYVbxJ/QEjpoaIybsnX8ZEC19Q=
 github.com/nnlgsakib/nlg-bft v1.0.2/go.mod h1:q1CSNPXBgHX+IrPl2NpaJAgvTo2InZ99FYM9rRte/pE=
+github.com/nnlgsakib/nlg-bft v1.0.3 h1:TlLQdP6QQvX6wLVQzuOCvrCYCjSct3/vghNnBiE6zQA=
+github.com/nnlgsakib/nlg-bft v1.0.3/go.mod h1:q1CSNPXBgHX+IrPl2NpaJAgvTo2InZ99FYM9rRte/pE=
 github.com/nxadm/tail v1.4.4/go.mod h1:kenIhsEOeOJmVchQTgglprH7qJGnHDVpk1VPCcaMI8A=
 github.com/nxadm/tail v1.4.8 h1:nPr65rt6Y5JFSKQO7qToXr7pePgD6Gwiw05lkbyAQTE=
 github.com/nxadm/tail v1.4.8/go.mod h1:+ncqLTQzXmGhMZNUePPaPqPvBxHAIsmXswZKocGu+AU=

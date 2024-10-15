@@ -63,7 +63,7 @@ require (
 )
 
 require (
-	github.com/nnlgsakib/nlg-bft v1.0.2
+	github.com/nnlgsakib/nlg-bft v1.0.3
 	github.com/quasilyte/go-ruleguard v0.4.0
 	github.com/quasilyte/go-ruleguard/dsl v0.3.22
 	github.com/sethvargo/go-retry v0.2.4
